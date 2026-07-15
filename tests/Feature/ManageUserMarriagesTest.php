@@ -9,8 +9,7 @@ class ManageUserMarriagesTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_visit_other_user_marriages_page()
+    public function test_user_can_visit_other_user_marriages_page()
     {
         $user = $this->loginAsUser();
 

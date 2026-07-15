@@ -1,17 +1,44 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ __('user.edit') }}</h3></div>
     <div class="panel-body">
-        {!! FormField::text('name', ['label' => __('user.name')]) !!}
-        {!! FormField::text('nickname', ['label' => __('user.nickname')]) !!}
+        <div class="form-group">
+            <label for="name" class="control-label">{{ __('user.name') }}</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $user->name) }}">
+        </div>
+        <div class="form-group">
+            <label for="nickname" class="control-label">{{ __('user.nickname') }}</label>
+            <input type="text" name="nickname" id="nickname" class="form-control" value="{{ old('nickname', $user->nickname) }}">
+        </div>
         <div class="row">
-            <div class="col-md-6">{!! FormField::radios('gender_id', [1 => __('app.male_code'), __('app.female_code')], ['label' => __('user.gender')]) !!}</div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">{{ __('user.gender') }}</label>
+                    <div>
+                        <label class="radio-inline"><input type="radio" name="gender_id" value="1" {{ old('gender_id', $user->gender_id) == 1 ? 'checked' : '' }}> {{ __('app.male_code') }}</label>
+                        <label class="radio-inline"><input type="radio" name="gender_id" value="2" {{ old('gender_id', $user->gender_id) == 2 ? 'checked' : '' }}> {{ __('app.female_code') }}</label>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
-                {!! FormField::text('birth_order', ['label' => __('user.birth_order'), 'type' => 'number', 'min' => 1]) !!}
+                <div class="form-group">
+                    <label for="birth_order" class="control-label">{{ __('user.birth_order') }}</label>
+                    <input type="number" name="birth_order" id="birth_order" class="form-control" min="1" value="{{ old('birth_order', $user->birth_order) }}">
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">{!! FormField::text('yob', ['label' => __('user.yob'), 'placeholder' => __('app.example').' 1959']) !!}</div>
-            <div class="col-md-6">{!! FormField::text('dob', ['label' => __('user.dob'), 'placeholder' => __('app.example').' 1959-07-20']) !!}</div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="yob" class="control-label">{{ __('user.yob') }}</label>
+                    <input type="text" name="yob" id="yob" class="form-control" placeholder="{{ __('app.example').' 1959' }}" value="{{ old('yob', $user->yob) }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dob" class="control-label">{{ __('user.dob') }}</label>
+                    <input type="text" name="dob" id="dob" class="form-control" placeholder="{{ __('app.example').' 1959-07-20' }}" value="{{ old('dob', $user->dob) }}">
+                </div>
+            </div>
         </div>
     </div>
 </div>

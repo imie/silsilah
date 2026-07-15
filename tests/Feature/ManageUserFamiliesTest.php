@@ -10,8 +10,7 @@ class ManageUserFamiliesTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_update_their_father()
+    public function test_user_can_update_their_father()
     {
         $user = $this->loginAsUser();
         $this->visit(route('profile'));
@@ -32,8 +31,7 @@ class ManageUserFamiliesTest extends TestCase
         $this->assertEquals('Nama Ayah', $user->fresh()->father->nickname);
     }
 
-    /** @test */
-    public function user_can_update_their_mother()
+    public function test_user_can_update_their_mother()
     {
         $user = $this->loginAsUser();
         $this->visit(route('profile'));
@@ -55,8 +53,7 @@ class ManageUserFamiliesTest extends TestCase
         $this->assertEquals('Nama Ibu', $user->fresh()->mother->nickname);
     }
 
-    /** @test */
-    public function user_can_add_childrens()
+    public function test_user_can_add_childrens()
     {
         $user = $this->loginAsUser(['gender_id' => 1]);
         $this->visit(route('profile'));
@@ -82,11 +79,10 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_add_childrens_with_parent_id_if_exist()
+    public function test_user_can_add_childrens_with_parent_id_if_exist()
     {
         $husband = $this->loginAsUser(['gender_id' => 1]);
-        $wife = factory(User::class)->states('female')->create(['manager_id' => $husband->id]);
+        $wife = User::factory()->female()->create(['manager_id' => $husband->id]);
         $husband->addWife($wife);
 
         $marriageId = $husband->fresh()->wifes->first()->pivot->id;
@@ -113,8 +109,7 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_add_children_with_birth_order()
+    public function test_user_can_add_children_with_birth_order()
     {
         $user = $this->loginAsUser(['gender_id' => 1]);
         $this->visit(route('profile'));
@@ -140,8 +135,7 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_set_wife()
+    public function test_user_can_set_wife()
     {
         $user = $this->loginAsUser(['gender_id' => 1]);
         $this->visit(route('profile'));
@@ -172,8 +166,7 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_set_husband()
+    public function test_user_can_set_husband()
     {
         $user = $this->loginAsUser(['gender_id' => 2]);
         $this->visit(route('profile'));
@@ -205,11 +198,10 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_pick_father_from_existing_user()
+    public function test_user_can_pick_father_from_existing_user()
     {
         $user = $this->loginAsUser();
-        $father = factory(User::class)->states('male')->create();
+        $father = User::factory()->male()->create();
 
         $this->visit(route('profile'));
         $this->seePageIs(route('profile'));
@@ -227,11 +219,10 @@ class ManageUserFamiliesTest extends TestCase
         $this->assertEquals($father->nickname, $user->fresh()->father->nickname);
     }
 
-    /** @test */
-    public function user_can_pick_mother_from_existing_user()
+    public function test_user_can_pick_mother_from_existing_user()
     {
         $user = $this->loginAsUser();
-        $mother = factory(User::class)->states('female')->create();
+        $mother = User::factory()->female()->create();
 
         $this->visit(route('profile'));
         $this->seePageIs(route('profile'));
@@ -249,11 +240,10 @@ class ManageUserFamiliesTest extends TestCase
         $this->assertEquals($mother->nickname, $user->fresh()->mother->nickname);
     }
 
-    /** @test */
-    public function user_can_pick_wife_from_existing_user()
+    public function test_user_can_pick_wife_from_existing_user()
     {
         $user = $this->loginAsUser(['gender_id' => 1]);
-        $wife = factory(User::class)->states('female')->create();
+        $wife = User::factory()->female()->create();
 
         $this->visit(route('profile'));
         $this->seePageIs(route('profile'));
@@ -275,11 +265,10 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_pick_husband_from_existing_user()
+    public function test_user_can_pick_husband_from_existing_user()
     {
         $user = $this->loginAsUser(['gender_id' => 2]);
-        $husband = factory(User::class)->states('male')->create();
+        $husband = User::factory()->male()->create();
 
         $this->visit(route('profile'));
         $this->seePageIs(route('profile'));
@@ -301,12 +290,11 @@ class ManageUserFamiliesTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_set_parent_from_existing_couple_id()
+    public function test_user_can_set_parent_from_existing_couple_id()
     {
         $user = $this->loginAsUser();
-        $husband = factory(User::class)->states('male')->create();
-        $wife = factory(User::class)->states('female')->create();
+        $husband = User::factory()->male()->create();
+        $wife = User::factory()->female()->create();
         $husband->addWife($wife);
 
         $marriageId = $husband->fresh()->wifes->first()->pivot->id;

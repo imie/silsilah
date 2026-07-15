@@ -11,31 +11,28 @@ class CoupleTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function a_couple_consists_of_a_husband_and_a_wife()
+    public function test_a_couple_consists_of_a_husband_and_a_wife()
     {
-        $couple = factory(Couple::class)->create();
+        $couple = Couple::factory()->create();
         $this->assertTrue($couple->husband instanceof User);
         $this->assertTrue($couple->wife instanceof User);
     }
 
-    /** @test */
-    public function a_couples_husband_or_wife_has_a_default_name()
+    public function test_a_couples_husband_or_wife_has_a_default_name()
     {
-        $couple = factory(Couple::class)->create();
+        $couple = Couple::factory()->create();
         $couple->husband->delete();
         $couple->wife->delete();
         $this->assertEquals($couple->fresh()->husband->name, 'N/A');
         $this->assertEquals($couple->fresh()->wife->name, 'N/A');
     }
 
-    /** @test */
-    public function a_couple_can_have_many_childs()
+    public function test_a_couple_can_have_many_childs()
     {
-        $couple = factory(Couple::class)->create();
+        $couple = Couple::factory()->create();
         $this->assertCount(0, $couple->childs);
 
-        $child = factory(User::class)->create();
+        $child = User::factory()->create();
         $couple->addChild($child);
 
         $child = $child->fresh();
@@ -45,10 +42,9 @@ class CoupleTest extends TestCase
         $this->assertEquals($child->mother_id, $couple->wife_id);
     }
 
-    /** @test */
-    public function a_couple_have_a_manager()
+    public function test_a_couple_have_a_manager()
     {
-        $couple = factory(Couple::class)->create();
+        $couple = Couple::factory()->create();
         $this->assertTrue($couple->manager instanceof User);
     }
 }

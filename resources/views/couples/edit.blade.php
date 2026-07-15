@@ -11,22 +11,30 @@
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('couple.update') }}</h3></div>
-            {!! Form::model($couple, ['route' => ['couples.update', $couple], 'method' => 'patch']) !!}
+            <form method="POST" action="{{ route('couples.update', $couple) }}">
+            @csrf
+            @method('patch')
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('marriage_date', ['label' => trans('couple.marriage_date')]) !!}
+                        <div class="form-group">
+                            <label for="marriage_date" class="control-label">{{ trans('couple.marriage_date') }}</label>
+                            <input type="text" name="marriage_date" id="marriage_date" class="form-control" value="{{ old('marriage_date', $couple->marriage_date) }}">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::text('divorce_date', ['label' => trans('couple.divorce_date')]) !!}
+                        <div class="form-group">
+                            <label for="divorce_date" class="control-label">{{ trans('couple.divorce_date') }}</label>
+                            <input type="text" name="divorce_date" id="divorce_date" class="form-control" value="{{ old('divorce_date', $couple->divorce_date) }}">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
-                {!! Form::submit(trans('couple.update'), ['class' => 'btn btn-success']) !!}
+                <button type="submit" class="btn btn-success">{{ trans('couple.update') }}</button>
                 {{ link_to_route('couples.show', trans('app.cancel'), [$couple], ['class' => 'btn btn-default']) }}
             </div>
-            {!! Form::close() !!}
+            </form>
         </div>
     </div>
 </div>

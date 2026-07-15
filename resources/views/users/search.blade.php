@@ -9,15 +9,15 @@
 </h2>
 
 
-{{ Form::open(['method' => 'get','class' => '']) }}
+<form method="GET" action="">
 <div class="input-group">
-    {{ Form::text('q', request('q'), ['class' => 'form-control', 'placeholder' => trans('app.search_your_family_placeholder')]) }}
+    <input type="text" name="q" value="{{ request('q') }}" class="form-control" placeholder="{{ trans('app.search_your_family_placeholder') }}">
     <span class="input-group-btn">
-        {{ Form::submit(trans('app.search'), ['class' => 'btn btn-default']) }}
+        <button type="submit" class="btn btn-default">{{ trans('app.search') }}</button>
         {{ link_to_route('users.search', 'Reset', [], ['class' => 'btn btn-default']) }}
     </span>
 </div>
-{{ Form::close() }}
+</form>
 
 @if (request('q'))
 <br>

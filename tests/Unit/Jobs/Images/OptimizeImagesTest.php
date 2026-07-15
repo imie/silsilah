@@ -8,8 +8,7 @@ use Tests\TestCase;
 
 class OptimizeImagesTest extends TestCase
 {
-    /** @test */
-    public function resize_image_into_a_proper_height()
+    public function test_resize_image_into_a_proper_height()
     {
         Storage::fake(config('filesystem.default'));
         Storage::assertMissing('portrait_image.jpg');
@@ -20,8 +19,7 @@ class OptimizeImagesTest extends TestCase
         Storage::assertExists('portrait_image.jpg');
     }
 
-    /** @test */
-    public function resize_image_into_a_proper_width()
+    public function test_resize_image_into_a_proper_width()
     {
         Storage::fake(config('filesystem.default'));
         Storage::assertMissing('landscape_image.jpg');

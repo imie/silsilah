@@ -10,14 +10,12 @@ class UserPhotoHelperTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_photo_path_function_exists()
+    public function test_user_photo_path_function_exists()
     {
         $this->assertTrue(function_exists('userPhotoPath'));
     }
 
-    /** @test */
-    public function user_photo_path_function_returns_default_photo_path_based_on_gender_if_photo_path_is_null()
+    public function test_user_photo_path_function_returns_default_photo_path_based_on_gender_if_photo_path_is_null()
     {
         $genderId = 1; // Male
         $this->assertEquals(
@@ -29,16 +27,14 @@ class UserPhotoHelperTest extends TestCase
             asset('images/icon_user_2.png'), userPhotoPath(null, $genderId)
         );
     }
-    /** @test */
-    public function user_photo_function_exists()
+    public function test_user_photo_function_exists()
     {
         $this->assertTrue(function_exists('userPhoto'));
     }
 
-    /** @test */
-    public function user_photo_function_returns_default_image_photo_element_if_no_agency_image_path_setting()
+    public function test_user_photo_function_returns_default_image_photo_element_if_no_agency_image_path_setting()
     {
-        $user = factory(User::class)->create(['gender_id' => 1]);
+        $user = User::factory()->create(['gender_id' => 1]);
 
         $photoFile = 'images/icon_user_1.png';
 
@@ -49,8 +45,7 @@ class UserPhotoHelperTest extends TestCase
         $this->assertEquals($imageString, userPhoto($user));
     }
 
-    /** @test */
-    public function user_photo_function_returns_correct_photo_element_based_on_user_photo_path()
+    public function test_user_photo_function_returns_correct_photo_element_based_on_user_photo_path()
     {
         $photoPath = 'images/user_photo_path.jpg';
 
@@ -61,7 +56,7 @@ class UserPhotoHelperTest extends TestCase
 
         $this->assertFileExists(storage_path('app/public/images/user_photo_path.jpg'));
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'gender_id'  => 2,
             'photo_path' => $photoPath,
         ]);
@@ -77,10 +72,9 @@ class UserPhotoHelperTest extends TestCase
         $this->assertFileDoesNotExist(storage_path('app/public/images/user_photo_path.jpg'));
     }
 
-    /** @test */
-    public function user_photo_function_has_overrideable_attributes()
+    public function test_user_photo_function_has_overrideable_attributes()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'gender_id' => 1,
         ]);
 
@@ -99,10 +93,9 @@ class UserPhotoHelperTest extends TestCase
         $this->assertEquals($imageString, userPhoto($user, $overrides));
     }
 
-    /** @test */
-    public function user_photo_function_returns_default_gender_logo_image_if_user_photo_file_doesnt_exists()
+    public function test_user_photo_function_returns_default_gender_logo_image_if_user_photo_file_doesnt_exists()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'gender_id'  => 2,
             'photo_path' => 'images/non_exists_photo_path.jpg',
         ]);

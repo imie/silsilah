@@ -10,11 +10,10 @@ class EditMarriagesTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_visit_a_marriage_detail_page()
+    public function test_user_can_visit_a_marriage_detail_page()
     {
         $user = $this->loginAsUser();
-        $couple = factory(Couple::class)->create();
+        $couple = Couple::factory()->create();
 
         $this->visit(route('couples.show', $couple));
 
@@ -22,11 +21,10 @@ class EditMarriagesTest extends TestCase
         $this->see($couple->wife->name);
     }
 
-    /** @test */
-    public function manager_can_edit_couple_data()
+    public function test_manager_can_edit_couple_data()
     {
         $user = $this->loginAsUser();
-        $couple = factory(Couple::class)->create(['manager_id' => $user->id]);
+        $couple = Couple::factory()->create(['manager_id' => $user->id]);
 
         $this->visit(route('couples.show', $couple));
 

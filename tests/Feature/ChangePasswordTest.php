@@ -9,8 +9,7 @@ class ChangePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_change_password()
+    public function test_user_can_change_password()
     {
         $user = $this->loginAsUser(['password' => bcrypt('secret')]);
 
@@ -31,8 +30,7 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
-    public function user_cannot_change_password_if_old_password_wrong()
+    public function test_user_cannot_change_password_if_old_password_wrong()
     {
         $user = $this->loginAsUser(['password' => bcrypt('secret')]);
 

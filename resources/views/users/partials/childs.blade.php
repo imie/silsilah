@@ -19,27 +19,48 @@
         @can('edit', $user)
         @if (request('action') == 'add_child')
         <li class="list-group-item">
-            {{ Form::open(['route' => ['family-actions.add-child', $user->id]]) }}
+            <form method="POST" action="{{ route('family-actions.add-child', $user->id) }}">
+            @csrf
             <div class="row">
                 <div class="col-md-8">
-                    {!! FormField::text('add_child_name', ['label' => __('user.child_name')]) !!}
+                    <div class="form-group">
+                        <label for="add_child_name" class="control-label">{{ __('user.child_name') }}</label>
+                        <input type="text" name="add_child_name" id="add_child_name" class="form-control">
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    {!! FormField::radios('add_child_gender_id', [1 => __('app.male'), 2 => __('app.female')], ['label' => __('user.child_gender')]) !!}
+                    <div class="form-group">
+                        <label class="control-label">{{ __('user.child_gender') }}</label>
+                        <div>
+                            <label class="radio-inline"><input type="radio" name="add_child_gender_id" value="1"> {{ __('app.male') }}</label>
+                            <label class="radio-inline"><input type="radio" name="add_child_gender_id" value="2"> {{ __('app.female') }}</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    {!! FormField::select('add_child_parent_id', $usersMariageList, ['label' => __('user.add_child_from_existing_couples', ['name' => $user->name]), 'placeholder' => __('app.unknown')]) !!}
+                    <div class="form-group">
+                        <label for="add_child_parent_id" class="control-label">{{ __('user.add_child_from_existing_couples', ['name' => $user->name]) }}</label>
+                        <select name="add_child_parent_id" id="add_child_parent_id" class="form-control">
+                            <option value="">{{ __('app.unknown') }}</option>
+                            @foreach($usersMariageList as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    {!! FormField::text('add_child_birth_order', ['label' => __('user.birth_order'), 'type' => 'number', 'min' => 1]) !!}
+                    <div class="form-group">
+                        <label for="add_child_birth_order" class="control-label">{{ __('user.birth_order') }}</label>
+                        <input type="number" name="add_child_birth_order" id="add_child_birth_order" class="form-control" min="1">
+                    </div>
                 </div>
             </div>
 
-            {{ Form::submit(__('user.add_child'), ['class' => 'btn btn-success btn-sm']) }}
+            <button type="submit" class="btn btn-success btn-sm">{{ __('user.add_child') }}</button>
             {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
-            {{ Form::close() }}
+            </form>
         </li>
         @endif
         @endcan

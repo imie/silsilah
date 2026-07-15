@@ -20,18 +20,20 @@
         <div class="col-md-2">@include('users.partials.edit_nav_tabs')</div>
         <div class="col-md-10">
             <div class="row">
-                {{ Form::model($user, ['route' => ['users.update', $user->id], 'method' =>'patch', 'autocomplete' => 'off']) }}
+                <form method="POST" action="{{ route('users.update', $user->id) }}" autocomplete="off">
+                @csrf
+                @method('patch')
                 <div class="col-md-6">
                     @includeWhen(request('tab') == null || !in_array(request('tab'), $validTabs), 'users.partials.edit_profile')
                     @includeWhen(request('tab') == 'death', 'users.partials.edit_death')
                     @includeWhen(request('tab') == 'contact_address', 'users.partials.edit_contact_address')
                     @includeWhen(request('tab') == 'login_account', 'users.partials.edit_login_account')
                     <div class="text-right">
-                        {{ Form::submit(__('app.update'), ['class' => 'btn btn-primary']) }}
+                        <button type="submit" class="btn btn-primary">{{ __('app.update') }}</button>
                         {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default']) }}
                     </div>
                 </div>
-                {{ Form::close() }}
+                </form>
                 <div class="col-md-6">
                     @includeWhen(request('tab') == null || !in_array(request('tab'), $validTabs), 'users.partials.update_photo')
                     @if (request('tab') == 'death')

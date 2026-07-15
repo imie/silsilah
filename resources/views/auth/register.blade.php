@@ -53,10 +53,18 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-                            <label for="gender_id" class="col-md-4 control-label">{{ trans('user.gender') }}</label>
+                            <label class="col-md-4 control-label">{{ trans('user.gender') }}</label>
 
                             <div class="col-md-6">
-                                {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
+                                <div>
+                                    <label class="radio-inline"><input type="radio" name="gender_id" value="1" {{ old('gender_id') == 1 ? 'checked' : '' }}> {{ trans('app.male') }}</label>
+                                    <label class="radio-inline"><input type="radio" name="gender_id" value="2" {{ old('gender_id') == 2 ? 'checked' : '' }}> {{ trans('app.female') }}</label>
+                                </div>
+                                @if ($errors->has('gender_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

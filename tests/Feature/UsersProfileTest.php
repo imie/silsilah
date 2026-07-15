@@ -15,13 +15,12 @@ class UsersProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function guest_can_search_users_profile()
+    public function test_guest_can_search_users_profile()
     {
         $user = $this->loginAsUser();
 
-        $jono = factory(User::class)->create(['name' => 'Jono']);
-        $jeni = factory(User::class)->create(['name' => 'Jeni']);
+        $jono = User::factory()->create(['name' => 'Jono']);
+        $jeni = User::factory()->create(['name' => 'Jeni']);
         $johan = factory(user::class)->create(['name' => 'Johan']);
 
         $this->visitRoute('users.search', ['q' => 'jo']);
@@ -32,16 +31,14 @@ class UsersProfileTest extends TestCase
         $this->dontSeeText('Jeni');
     }
 
-    /** @test */
-    public function user_can_view_other_users_profile()
+    public function test_user_can_view_other_users_profile()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.show', $user->id));
         $this->see($user->name);
     }
 
-    /** @test */
-    public function user_will_see_edit_profile_if_an_invalid_tab_selected()
+    public function test_user_will_see_edit_profile_if_an_invalid_tab_selected()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'invalid_tab']));
@@ -50,8 +47,7 @@ class UsersProfileTest extends TestCase
         $this->seeElement('input', ['name' => 'name']);
     }
 
-    /** @test */
-    public function user_can_edit_profile()
+    public function test_user_can_edit_profile()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', $user->id));
@@ -76,8 +72,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_update_yob_only()
+    public function test_user_can_update_yob_only()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', $user->id));
@@ -95,8 +90,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_edit_contact_address()
+    public function test_user_can_edit_contact_address()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'contact_address']));
@@ -116,8 +110,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_edit_login_account()
+    public function test_user_can_edit_login_account()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
@@ -135,8 +128,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_edit_death()
+    public function test_user_can_edit_death()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
@@ -154,8 +146,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_update_yod_only()
+    public function test_user_can_update_yod_only()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
@@ -173,8 +164,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_update_died_person_cemetary_location()
+    public function test_user_can_update_died_person_cemetary_location()
     {
         $user = $this->loginAsUser();
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
@@ -220,8 +210,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_metadata_can_be_prefilled_on_the_edit_form()
+    public function test_user_metadata_can_be_prefilled_on_the_edit_form()
     {
         $user = $this->loginAsUser();
         DB::table('user_metadata')->insert([
@@ -239,11 +228,10 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function manager_can_add_login_account_on_a_user()
+    public function test_manager_can_add_login_account_on_a_user()
     {
         $manager = $this->loginAsUser();
-        $user = factory(User::class)->create(['manager_id' => $manager->id]);
+        $user = User::factory()->create(['manager_id' => $manager->id]);
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
@@ -257,11 +245,10 @@ class UsersProfileTest extends TestCase
         $this->assertTrue(app('hash')->check('Secr3t', $user->password));
     }
 
-    /** @test */
-    public function manager_can_add_user_email_without_a_password()
+    public function test_manager_can_add_user_email_without_a_password()
     {
         $manager = $this->loginAsUser();
-        $user = factory(User::class)->create(['manager_id' => $manager->id]);
+        $user = User::factory()->create(['manager_id' => $manager->id]);
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
@@ -275,11 +262,10 @@ class UsersProfileTest extends TestCase
         $this->assertNull($user->password);
     }
 
-    /** @test */
-    public function empty_password_does_not_replace_existing()
+    public function test_empty_password_does_not_replace_existing()
     {
         $manager = $this->loginAsUser();
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'manager_id' => $manager->id,
             'password' => 'some random string password',
         ]);
@@ -298,8 +284,7 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_upload_their_own_photo()
+    public function test_user_can_upload_their_own_photo()
     {
         Bus::fake();
         Storage::fake(config('filesystems.default'));

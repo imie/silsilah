@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
 class Couple extends Model
 {
+    use HasFactory;
+    
     /**
      * Indicates if the IDs are auto-incrementing.
      *

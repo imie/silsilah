@@ -10,10 +10,9 @@ class PersonRelationsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function create_user_model_with_factory()
+    public function test_create_user_model_with_factory()
     {
-        $person = factory(User::class)->create();
+        $person = User::factory()->create();
 
         $this->seeInDatabase('users', [
             'nickname' => $person->nickname,
@@ -21,11 +20,10 @@ class PersonRelationsTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function person_can_have_a_father()
+    public function test_person_can_have_a_father()
     {
-        $person = factory(User::class)->create();
-        $father = factory(User::class)->states('male')->create();
+        $person = User::factory()->create();
+        $father = User::factory()->male()->create();
         $person->setFather($father);
 
         $this->seeInDatabase('users', [
@@ -36,11 +34,10 @@ class PersonRelationsTest extends TestCase
         $this->assertEquals($father->name, $person->father->name);
     }
 
-    /** @test */
-    public function person_can_have_a_mother()
+    public function test_person_can_have_a_mother()
     {
-        $person = factory(User::class)->create();
-        $mother = factory(User::class)->states('female')->create();
+        $person = User::factory()->create();
+        $mother = User::factory()->female()->create();
         $person->setMother($mother);
 
         $this->seeInDatabase('users', [
@@ -51,13 +48,12 @@ class PersonRelationsTest extends TestCase
         $this->assertEquals($mother->name, $person->mother->name);
     }
 
-    /** @test */
-    public function person_can_many_childs()
+    public function test_person_can_many_childs()
     {
-        $mother = factory(User::class)->states('female')->create();
-        $person = factory(User::class)->create();
+        $mother = User::factory()->female()->create();
+        $person = User::factory()->create();
         $person->setMother($mother);
-        $person = factory(User::class)->create();
+        $person = User::factory()->create();
         $person->setMother($mother);
 
         $this->assertCount(2, $mother->childs);
