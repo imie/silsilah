@@ -5,12 +5,12 @@
 @section('user-content')
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card card bg-light">
+            <div class="card-header">
                 @can('edit', $user)
-                    {{ link_to_route('users.edit', __('app.edit'), [$user->id, 'tab' => 'death'], ['class' => 'pull-right']) }}
+                    {{ link_to_route('users.edit', __('app.edit'), [$user->id, 'tab' => 'death'], ['class' => 'float-end']) }}
                 @endcan
-                <h3 class="panel-title">{{ __('user.death') }}</h3>
+                <h3 class="card-title">{{ __('user.death') }}</h3>
             </div>
             <table class="table">
                 <tbody>
@@ -39,22 +39,22 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ __('user.cemetery_location') }}</h3></div>
+        <div class="card card bg-light">
+            <div class="card-header"><h3 class="card-title">{{ __('user.cemetery_location') }}</h3></div>
             @if ($mapCenterLatitude && $mapCenterLongitude)
-                <div class="panel-body"><div id="mapid"></div></div>
-                <div class="panel-footer">
+                <div class="card-body"><div id="mapid"></div></div>
+                <div class="card-footer">
                     @php
                         $locationCoordinate = $mapCenterLatitude.','.$mapCenterLongitude.'/@'.$mapCenterLatitude.','.$mapCenterLongitude.','.$mapZoomLevel.'z';
                     @endphp
                     {{ link_to(
                         'https://www.google.com/maps/place/'.$locationCoordinate,
                         __('app.open_in_google_map'),
-                        ['class' => 'btn btn-default btn-block', 'target' => '_blank']
+                        ['class' => 'btn btn-secondary btn-block', 'target' => '_blank']
                     ) }}
                 </div>
             @else
-                <div class="panel-body">{{ __('app.data_not_available') }}</div>
+                <div class="card-body">{{ __('app.data_not_available') }}</div>
             @endif
         </div>
     </div>
@@ -77,7 +77,7 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""></script>
 
-    <script>
+    <script type="module">
         var mapCenter = [{{ $mapCenterLatitude }}, {{ $mapCenterLongitude }}];
         var map = L.map('mapid').setView(mapCenter, {{ $mapZoomLevel }});
 

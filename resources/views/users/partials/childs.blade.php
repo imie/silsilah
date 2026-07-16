@@ -1,11 +1,11 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="card card bg-light">
+    <div class="card-header">
         @can ('edit', $user)
-        <div class="pull-right" style="margin: -3px -6px">
+        <div class="float-end" style="margin: -3px -6px">
             {{ link_to_route('users.show', __('user.add_child'), [$user->id, 'action' => 'add_child'], ['class' => 'btn btn-success btn-xs']) }}
         </div>
         @endcan
-        <h3 class="panel-title">{{ __('user.childs') }} ({{ $user->childs->count() }})</h3>
+        <h3 class="card-title">{{ __('user.childs') }} ({{ $user->childs->count() }})</h3>
     </div>
 
     <ul class="list-group">
@@ -59,7 +59,7 @@
             </div>
 
             <button type="submit" class="btn btn-success btn-sm">{{ __('user.add_child') }}</button>
-            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-secondary btn-sm']) }}
             </form>
         </li>
         @endif

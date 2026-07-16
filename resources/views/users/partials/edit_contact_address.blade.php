@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('app.address') }} &amp; {{ __('app.contact') }}</h3></div>
-    <div class="panel-body">
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ __('app.address') }} &amp; {{ __('app.contact') }}</h3></div>
+    <div class="card-body">
         <div class="form-group">
             <label for="address" class="control-label">{{ __('app.address') }}</label>
             <textarea name="address" id="address" class="form-control">{{ old('address', $user->address) }}</textarea>

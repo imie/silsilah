@@ -1,4 +1,4 @@
-<div class="panel panel-default table-responsive">
+<div class="card card bg-light table-responsive">
     <table class="table table-bordered table-striped">
         <tbody>
             <tr>

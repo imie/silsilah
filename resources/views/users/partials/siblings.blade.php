@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('user.siblings') }}</h3></div>
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ trans('user.siblings') }}</h3></div>
     <table class="table">
         <tbody>
             @foreach($user->siblings() as $sibling)

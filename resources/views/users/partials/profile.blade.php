@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('user.profile') }}</h3></div>
-    <div class="panel-body text-center">
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ trans('user.profile') }}</h3></div>
+    <div class="card-body text-center">
         {{ userPhoto($user, ['style' => 'width:100%;max-width:300px']) }}
     </div>
     <table class="table">

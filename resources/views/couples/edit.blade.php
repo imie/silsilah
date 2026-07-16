@@ -9,12 +9,12 @@
 
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('couple.update') }}</h3></div>
+        <div class="card card bg-light">
+            <div class="card-header"><h3 class="card-title">{{ trans('couple.update') }}</h3></div>
             <form method="POST" action="{{ route('couples.update', $couple) }}">
             @csrf
             @method('patch')
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -29,10 +29,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="address" class="control-label">{{ trans('app.address') }}</label>
+                    <textarea name="address" id="address" class="form-control">{{ old('address', $couple->address) }}</textarea>
+                </div>
             </div>
-            <div class="panel-footer">
+            <div class="card-footer">
                 <button type="submit" class="btn btn-success">{{ trans('couple.update') }}</button>
-                {{ link_to_route('couples.show', trans('app.cancel'), [$couple], ['class' => 'btn btn-default']) }}
+                {{ link_to_route('couples.show', trans('app.cancel'), [$couple], ['class' => 'btn btn-secondary']) }}
             </div>
             </form>
         </div>
@@ -50,7 +54,7 @@
 @endsection
 
 @section ('script')
-<script>
+<script type="module">
 (function () {
     $('#marriage_date, #divorce_date').datetimepicker({
         timepicker:false,

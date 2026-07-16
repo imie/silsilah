@@ -10,8 +10,8 @@
         </div>
     @endcan
 @else
-    <div class="pull-right">
-        {{ link_to_route('users.show', __('app.show_profile').' '.$user->name, [$user->id], ['class' => 'btn btn-default']) }}
+    <div class="float-end">
+        {{ link_to_route('users.show', __('app.show_profile').' '.$user->name, [$user->id], ['class' => 'btn btn-secondary']) }}
     </div>
     <h2 class="page-header">
         {{ __('user.edit') }} {{ $user->profileLink() }}
@@ -28,9 +28,9 @@
                     @includeWhen(request('tab') == 'death', 'users.partials.edit_death')
                     @includeWhen(request('tab') == 'contact_address', 'users.partials.edit_contact_address')
                     @includeWhen(request('tab') == 'login_account', 'users.partials.edit_login_account')
-                    <div class="text-right">
+                    <div class="text-end">
                         <button type="submit" class="btn btn-primary">{{ __('app.update') }}</button>
-                        {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default']) }}
+                        {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-secondary']) }}
                     </div>
                 </div>
                 </form>
@@ -70,7 +70,7 @@
       crossorigin=""></script>
 @endif
 
-<script>
+<script type="module">
     (function() {
         $('select').select2();
         $('#dob,#dod').datetimepicker({

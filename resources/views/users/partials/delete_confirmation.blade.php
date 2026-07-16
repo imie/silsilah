@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.delete') }} : {{ $user->name }}</h3></div>
-    <div class="panel-body">
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ __('user.delete') }} : {{ $user->name }}</h3></div>
+    <div class="card-body">
         <table class="table table-condensed">
             <tr><td>{{ __('user.name') }}</td><td>{{ $user->name }}</td></tr>
             <tr><td>{{ __('user.nickname') }}</td><td>{{ $user->nickname }}</td></tr>
@@ -26,16 +26,16 @@
                     </select>
                 </div>
                 <button type="submit" name="replace_delete_button" class="btn btn-danger">{{ __('user.replace_delete_button') }}</button>
-                {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-default pull-right']) }}
+                {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-secondary float-end']) }}
             </form>
         @else
-            <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit='return confirm("{{ __('app.delete_confirm') }}")' class="pull-left" style="margin-right: 5px;">
+            <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit='return confirm("{{ __('app.delete_confirm') }}")' class="float-start" style="margin-right: 5px;">
                 @csrf
                 @method('delete')
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <button type="submit" class="btn btn-danger">{{ __('user.delete_confirm_button') }}</button>
             </form>
-            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-default']) }}
+            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-secondary']) }}
         @endif
     </div>
 </div>

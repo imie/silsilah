@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.edit') }}</h3></div>
-    <div class="panel-body">
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ __('user.edit') }}</h3></div>
+    <div class="card-body">
         <div class="form-group">
             <label for="name" class="control-label">{{ __('user.name') }}</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $user->name) }}">

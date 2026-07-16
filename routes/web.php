@@ -76,12 +76,12 @@ Route::middleware('auth')->group(function () {
  */
 Route::group(['middleware' => 'admin'], function () {
     /**
-     * Backup Restore Database Routes (Disabled during Laravel 12 upgrade)
+     * Backup Restore Database Routes
      */
-    // Route::controller(BackupsController::class)->group(function () {
-    //     Route::post('backups/upload', 'upload')->name('backups.upload');
-    //     Route::post('backups/{fileName}/restore', 'restore')->name('backups.restore');
-    //     Route::get('backups/{fileName}/dl', 'download')->name('backups.download');
-    // });
-    // Route::resource('backups', BackupsController::class);
+    Route::controller(BackupsController::class)->group(function () {
+        Route::post('backups/upload', 'upload')->name('backups.upload');
+        Route::post('backups/{fileName}/restore', 'restore')->name('backups.restore');
+        Route::get('backups/{fileName}/dl', 'download')->name('backups.download');
+    });
+    Route::resource('backups', BackupsController::class);
 });

@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('app.login_account') }}</h3></div>
-    <div class="panel-body">
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ __('app.login_account') }}</h3></div>
+    <div class="card-body">
         <div class="form-group">
             <label for="email" class="control-label">{{ __('auth.email') }}</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('app.example').' nama@mail.com' }}" value="{{ old('email', $user->email) }}">

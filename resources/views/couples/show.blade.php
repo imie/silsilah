@@ -2,7 +2,7 @@
 
 @section('content')
 @can('edit', $couple)
-    <div class="pull-right">
+    <div class="float-end">
         {{ link_to_route('couples.edit', trans('couple.edit'), $couple, ['class' => 'btn btn-warning']) }}
     </div>
 @endcan

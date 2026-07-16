@@ -3,37 +3,61 @@
 @section('subtitle', trans('app.family_chart'))
 
 @section('user-content')
-<div class="panel panel-default table-responsive">
+<div class="card card bg-light table-responsive">
     <table class="table table-bordered table-striped">
         <tbody>
             <tr>
                 <th style="width: 9%">{{ trans('user.grand_father') }} & {{ trans('user.grand_mother') }}</th>
                 <td class="text-center">
-                    {{ $fatherGrandpa ? $fatherGrandpa->profileLink('chart') : '?' }}
+                    @if($fatherGrandpa)
+                        @include('users.partials.tree-node', ['userNode' => $fatherGrandpa, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
                 <td class="text-center">
-                    {{ $fatherGrandma ? $fatherGrandma->profileLink('chart') : '?' }}
+                    @if($fatherGrandma)
+                        @include('users.partials.tree-node', ['userNode' => $fatherGrandma, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
                 <td class="text-center">
-                    {{ $motherGrandpa ? $motherGrandpa->profileLink('chart') : '?' }}
+                    @if($motherGrandpa)
+                        @include('users.partials.tree-node', ['userNode' => $motherGrandpa, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
                 <td class="text-center">
-                    {{ $motherGrandma ? $motherGrandma->profileLink('chart') : '?' }}
+                    @if($motherGrandma)
+                        @include('users.partials.tree-node', ['userNode' => $motherGrandma, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th>{{ trans('user.father') }} & {{ trans('user.mother') }}</th>
                 <td class="text-center" colspan="2">
-                    {{ $father ? $father->profileLink('chart') : '?' }}
+                    @if($father)
+                        @include('users.partials.tree-node', ['userNode' => $father, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
                 <td class="text-center" colspan="2">
-                    {{ $mother ? $mother->profileLink('chart') : '?' }}
+                    @if($mother)
+                        @include('users.partials.tree-node', ['userNode' => $mother, 'type' => 'chart'])
+                    @else
+                        ?
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th>&nbsp;</th>
                 <td class="text-center lead" colspan="4">
-                    <strong>{{ $user->profileLink('chart') }} ({{ $user->gender }})</strong>
+                    <strong>@include('users.partials.tree-node', ['userNode' => $user, 'type' => 'chart']) ({{ $user->gender }})</strong>
                 </td>
             </tr>
             <tr>
@@ -44,10 +68,10 @@
                     <div class="">
                         @foreach($chunkedChild as $child)
                         <div class="col-md-3">
-                            <h4><strong>{{ ++$no }}. {{ $child->profileLink('chart') }} ({{ $child->gender }})</strong></h4>
+                            <h4><strong>{{ ++$no }}. @include('users.partials.tree-node', ['userNode' => $child, 'type' => 'chart']) ({{ $child->gender }})</strong></h4>
                             <ul style="padding-left: 30px">
                                 @foreach($child->childs as $grand)
-                                <li>{{ $grand->profileLink('chart') }} ({{ $grand->gender }})</li>
+                                <li>@include('users.partials.tree-node', ['userNode' => $grand, 'type' => 'chart']) ({{ $grand->gender }})</li>
                                 @endforeach
                             </ul>
                         </div>

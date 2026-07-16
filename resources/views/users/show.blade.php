@@ -26,7 +26,7 @@
 @endsection
 
 @section ('script')
-<script>
+<script type="module">
 (function () {
     $('select').select2();
     $('input[name=marriage_date]').datetimepicker({

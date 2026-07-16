@@ -6,8 +6,8 @@
 <h3 class="page-header">{{ trans('backup.index_title') }}</h3>
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('backup.list') }}</h3></div>
+        <div class="card card bg-light table-responsive">
+            <div class="card-header"><h3 class="card-title">{{ trans('backup.list') }}</h3></div>
             <table class="table table-condensed">
                 <thead>
                     <th>#</th>

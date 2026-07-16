@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.family') }}</h3></div>
+<div class="card card bg-light">
+    <div class="card-header"><h3 class="card-title">{{ __('user.family') }}</h3></div>
 
     <table class="table">
         <tbody>
@@ -22,13 +22,13 @@
                             <input type="text" name="set_father" class="form-control input-sm" placeholder="{{ __('app.enter_new_name') }}">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-info btn-sm" id="set_father_button">{{ __('app.update') }}</button>
-                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-secondary btn-sm']) }}
                             </span>
                         </div>
                         </form>
                         @else
                             {{ $user->fatherLink() }}
-                            <div class="pull-right">
+                            <div class="float-end">
                                 {{ link_to_route('users.show', __('user.set_father'), [$user->id, 'action' => 'set_father'], ['class' => 'btn btn-link btn-xs']) }}
                             </div>
                         @endif
@@ -56,13 +56,13 @@
                             <input type="text" name="set_mother" class="form-control input-sm" placeholder="{{ __('app.enter_new_name') }}">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-info btn-sm" id="set_mother_button">{{ __('app.update') }}</button>
-                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-secondary btn-sm']) }}
                             </span>
                         </div>
                         </form>
                         @else
                             {{ $user->motherLink() }}
-                            <div class="pull-right">
+                            <div class="float-end">
                                 {{ link_to_route('users.show', __('user.set_mother'), [$user->id, 'action' => 'set_mother'], ['class' => 'btn btn-link btn-xs']) }}
                             </div>
                         @endif
@@ -75,7 +75,7 @@
                 <th class="col-sm-4">{{ __('user.parent') }}</th>
                 <td class="col-sm-8">
                     @can ('edit', $user)
-                    <div class="pull-right">
+                    <div class="float-end">
                         @unless (request('action') == 'set_parent')
                             {{ link_to_route('users.show', __('user.set_parent'), [$user->id, 'action' => 'set_parent'], ['class' => 'btn btn-link btn-xs']) }}
                         @endunless
@@ -99,7 +99,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-info btn-sm" id="set_parent_button">{{ __('app.update') }}</button>
-                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-secondary btn-sm']) }}
                             </form>
                         @endif
                     @endcan
@@ -110,7 +110,7 @@
                 <th>{{ __('user.wife') }}</th>
                 <td>
                     @can ('edit', $user)
-                    <div class="pull-right">
+                    <div class="float-end">
                         @unless (request('action') == 'add_spouse')
                             {{ link_to_route('users.show', __('user.add_wife'), [$user->id, 'action' => 'add_spouse'], ['class' => 'btn btn-link btn-xs']) }}
                         @endunless
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-info btn-sm" id="set_wife_button">{{ __('app.update') }}</button>
-                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-secondary btn-sm']) }}
                             </form>
                         </div>
                         @endif
@@ -160,7 +160,7 @@
                 <th>{{ __('user.husband') }}</th>
                 <td>
                     @can ('edit', $user)
-                    <div class="pull-right">
+                    <div class="float-end">
                         @unless (request('action') == 'add_spouse')
                             {{ link_to_route('users.show', __('user.add_husband'), [$user->id, 'action' => 'add_spouse'], ['class' => 'btn btn-link btn-xs']) }}
                         @endunless
@@ -197,7 +197,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-info btn-sm" id="set_husband_button">{{ __('app.update') }}</button>
-                            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-secondary btn-sm']) }}
                             </form>
                         </div>
                         @endif

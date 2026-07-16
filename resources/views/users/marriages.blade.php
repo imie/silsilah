@@ -7,7 +7,7 @@
 <div class="row">
     @foreach ($marriages as $marriage)
     <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="card card bg-light">
             <table class="table table-condensed">
                 <tr><th class="col-xs-5">{{ trans('couple.husband') }}</th><td>{{ $marriage->husband->profileLink() }}</th></tr>
                 <tr><th>{{ trans('couple.wife') }}</th><td>{{ $marriage->wife->profileLink() }}</th></tr>
@@ -18,8 +18,8 @@
                 <tr><th>{{ trans('couple.childs_count') }}</th><td>{{ $marriage->childs_count }}</th></tr>
                 {{-- <tr><th>{{ trans('couple.grand_childs_count') }}</th><td>?</th></tr> --}}
             </table>
-            <div class="panel-footer">
-                {{ link_to_route('couples.show', trans('couple.show'), [$marriage->id], ['class' => 'btn btn-default btn-xs']) }}
+            <div class="card-footer">
+                {{ link_to_route('couples.show', trans('couple.show'), [$marriage->id], ['class' => 'btn btn-secondary btn-xs']) }}
             </div>
         </div>
     </div>

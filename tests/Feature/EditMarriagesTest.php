@@ -34,6 +34,7 @@ class EditMarriagesTest extends TestCase
         $this->submitForm(trans('couple.update'), [
             'marriage_date' => '2010-04-04',
             'divorce_date' => '2035-04-04',
+            'address' => 'Jl. Jendral Sudirman No. 1, Jakarta',
         ]);
 
         $this->seePageIs(route('couples.show', $couple));
@@ -42,6 +43,7 @@ class EditMarriagesTest extends TestCase
             'id' => $couple->id,
             'marriage_date' => '2010-04-04',
             'divorce_date' => '2035-04-04',
+            'address' => 'Jl. Jendral Sudirman No. 1, Jakarta',
         ]);
     }
 }
