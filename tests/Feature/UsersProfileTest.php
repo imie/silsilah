@@ -21,7 +21,7 @@ class UsersProfileTest extends TestCase
 
         $jono = User::factory()->create(['name' => 'Jono']);
         $jeni = User::factory()->create(['name' => 'Jeni']);
-        $johan = factory(user::class)->create(['name' => 'Johan']);
+        $johan = User::factory()->create(['name' => 'Johan']);
 
         $this->visitRoute('users.search', ['q' => 'jo']);
         $this->seeRouteIs('users.search', ['q' => 'jo']);

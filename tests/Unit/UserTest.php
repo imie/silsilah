@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class UserTest extends TestCase
 {
@@ -202,6 +203,7 @@ class UserTest extends TestCase
     /**
      * @dataProvider userAgeDataProvider
      */
+    #[DataProvider('userAgeDataProvider')]
     public function test_user_has_age_attribute($today, $dob, $yob, $dod, $yod, $age)
     {
         Carbon::setTestNow($today);
@@ -220,7 +222,7 @@ class UserTest extends TestCase
      *
      * @return array
      */
-    public function userAgeDataProvider()
+    public static function userAgeDataProvider()
     {
         return [
             ['2018-02-02', '1997-01-01', '1997', null, null, 21],
@@ -234,6 +236,7 @@ class UserTest extends TestCase
     /**
      * @dataProvider userAgeDetailDataProvider
      */
+    #[DataProvider('userAgeDetailDataProvider')]
     public function test_user_has_age_detail_attribute($today, $dob, $yob, $dod, $yod, $age)
     {
         Carbon::setTestNow($today);
@@ -252,7 +255,7 @@ class UserTest extends TestCase
      *
      * @return array
      */
-    public function userAgeDetailDataProvider()
+    public static function userAgeDetailDataProvider()
     {
         return [
             ['2018-02-02', '1997-01-01', '1997', null, null, '21 tahun, 1 bulan, 1 hari'],
@@ -309,7 +312,7 @@ class UserTest extends TestCase
         }
 
         $this->assertEquals(
-            Carbon::now()->diffInDays($birthdayDateClass, false),
+            (int) round(Carbon::now()->startOfDay()->diffInDays($birthdayDateClass, false)),
             $customer->birthday_remaining
         );
     }

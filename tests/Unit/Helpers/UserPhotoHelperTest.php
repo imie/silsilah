@@ -42,7 +42,7 @@ class UserPhotoHelperTest extends TestCase
         $imageString .= ' src="'.asset($photoFile).'"';
         $imageString .= '>';
 
-        $this->assertEquals($imageString, userPhoto($user));
+        $this->assertEquals($imageString, (string) userPhoto($user));
     }
 
     public function test_user_photo_function_returns_correct_photo_element_based_on_user_photo_path()
@@ -50,7 +50,7 @@ class UserPhotoHelperTest extends TestCase
         $photoPath = 'images/user_photo_path.jpg';
 
         if (!is_dir(storage_path('app/public/images'))) {
-            mkdir(storage_path('app/public/images'), 0700);
+            mkdir(storage_path('app/public/images'), 0700, true);
         }
         copy(public_path('images/icon_user_1.png'), storage_path('app/public/images/user_photo_path.jpg'));
 
@@ -65,7 +65,7 @@ class UserPhotoHelperTest extends TestCase
         $imageString .= ' src="'.asset('storage/'.$photoPath).'"';
         $imageString .= '>';
 
-        $this->assertEquals($imageString, userPhoto($user));
+        $this->assertEquals($imageString, (string) userPhoto($user));
 
         $this->assertFileExists(storage_path('app/public/images/user_photo_path.jpg'));
         unlink(storage_path('app/public/images/user_photo_path.jpg'));
@@ -90,7 +90,7 @@ class UserPhotoHelperTest extends TestCase
             'class' => '123',
             'style' => 'display: inline',
         ];
-        $this->assertEquals($imageString, userPhoto($user, $overrides));
+        $this->assertEquals($imageString, (string) userPhoto($user, $overrides));
     }
 
     public function test_user_photo_function_returns_default_gender_logo_image_if_user_photo_file_doesnt_exists()
@@ -106,6 +106,6 @@ class UserPhotoHelperTest extends TestCase
         $imageString .= ' src="'.asset($photoFile).'"';
         $imageString .= '>';
 
-        $this->assertEquals($imageString, userPhoto($user));
+        $this->assertEquals($imageString, (string) userPhoto($user));
     }
 }

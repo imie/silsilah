@@ -22,7 +22,7 @@ class OptimizeImages implements ShouldQueue
     {
         $convertedImagesCount = 0;
         foreach ($this->imagePaths as $imagePath) {
-            $image = Image::read($imagePath);
+            $image = Image::decodePath($imagePath);
             $image->scale(1000, 1000);
             $image->save();
         }

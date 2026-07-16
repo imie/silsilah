@@ -182,7 +182,7 @@ class UsersController extends Controller
                 'replacement_user_id.required' => __('validation.user.replacement_user_id.required'),
             ]);
 
-            $this->dispatchNow(new DeleteAndReplaceUser($user, $attributes['replacement_user_id']));
+            $this->dispatchSync(new DeleteAndReplaceUser($user, $attributes['replacement_user_id']));
 
             return redirect()->route('users.show', $attributes['replacement_user_id']);
         }
@@ -211,7 +211,7 @@ class UsersController extends Controller
             'photo' => 'required|image|max:10000',
         ]);
 
-        if (Storage::exists($user->photo_path)) {
+        if ($user->photo_path && Storage::exists($user->photo_path)) {
             Storage::delete($user->photo_path);
         }
 

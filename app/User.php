@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Ramsey\Uuid\Uuid;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -253,19 +254,19 @@ class User extends Authenticatable
         $yearOnlySuffix = Carbon::now()->format('-m-d');
 
         if ($this->dob && !$this->dod) {
-            $ageDetail = Carbon::parse($this->dob)->diffInYears();
+            $ageDetail = (int) Carbon::parse($this->dob)->diffInYears();
         }
         if (!$this->dob && $this->yob) {
-            $ageDetail = Carbon::parse($this->yob.$yearOnlySuffix)->diffInYears();
+            $ageDetail = (int) Carbon::parse($this->yob.$yearOnlySuffix)->diffInYears();
         }
         if ($this->dob && $this->dod) {
-            $ageDetail = Carbon::parse($this->dob)->diffInYears($this->dod);
+            $ageDetail = (int) Carbon::parse($this->dob)->diffInYears($this->dod);
         }
         if (!$this->dob && $this->yob && !$this->dod && $this->yod) {
-            $ageDetail = Carbon::parse($this->yob.$yearOnlySuffix)->diffInYears($this->yod.$yearOnlySuffix);
+            $ageDetail = (int) Carbon::parse($this->yob.$yearOnlySuffix)->diffInYears($this->yod.$yearOnlySuffix);
         }
         if ($this->dob && $this->yob && $this->dod && $this->yod) {
-            $ageDetail = Carbon::parse($this->dob)->diffInYears($this->dod);
+            $ageDetail = (int) Carbon::parse($this->dob)->diffInYears($this->dod);
         }
 
         return $ageDetail;
@@ -319,7 +320,7 @@ class User extends Authenticatable
     public function getBirthdayRemainingAttribute()
     {
         if ($this->dob) {
-            return Carbon::now()->diffInDays($this->birthday, false);
+            return (int) round(Carbon::now()->startOfDay()->diffInDays($this->birthday, false));
         }
     }
 

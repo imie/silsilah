@@ -10,8 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles and Scripts -->
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     @yield('ext_css')
     <style>
     .page-header {
@@ -28,8 +28,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     @yield('ext_js')
     @yield('script')
     <script>

@@ -55,17 +55,19 @@ class UpdateRequest extends FormRequest
         ];
     }
 
-    public function validated()
+    public function validated($key = null, $default = null)
     {
-        $formData = parent::validated();
+        $formData = parent::validated($key, $default);
 
-        $formData['yod'] = $this->getYod($formData);
-        $formData['yob'] = $this->getYob($formData);
+        if ($key === null && is_array($formData)) {
+            $formData['yod'] = $this->getYod($formData);
+            $formData['yob'] = $this->getYob($formData);
 
-        if (isset($formData['password']) && $formData['password']) {
-            $formData['password'] = bcrypt($formData['password']);
-        } else {
-            unset($formData['password']);
+            if (isset($formData['password']) && $formData['password']) {
+                $formData['password'] = bcrypt($formData['password']);
+            } else {
+                unset($formData['password']);
+            }
         }
 
         return $formData;

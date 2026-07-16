@@ -27,13 +27,32 @@ function formatSizeUnits($bytes)
     return $bytes;
 }
 
-/**
- * Get user photo image tag.
- *
- * @param  \App\User  $user
- * @param  array  $attributes
- * @return \Illuminate\Support\HtmlString
- */
+class Html {
+    public static function image($url, $alt = null, $attributes = [])
+    {
+        $attrs = '';
+        foreach ($attributes as $key => $value) {
+            $attrs .= ' ' . $key . '="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false) . '"';
+        }
+        if ($alt !== null) {
+            $attrs .= ' alt="' . htmlspecialchars($alt, ENT_QUOTES, 'UTF-8', false) . '"';
+        }
+        return new \Illuminate\Support\HtmlString('<img src="' . $url . '"' . $attrs . '>');
+    }
+}
+
+if (!function_exists('link_to_route')) {
+    function link_to_route($name, $title = null, $parameters = [], $attributes = [])
+    {
+        $url = route($name, $parameters);
+        $attrs = '';
+        foreach ($attributes as $key => $value) {
+            $attrs .= ' ' . $key . '="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false) . '"';
+        }
+        return new \Illuminate\Support\HtmlString('<a href="' . $url . '"' . $attrs . '>' . htmlspecialchars($title ?? $url, ENT_QUOTES, 'UTF-8', false) . '</a>');
+    }
+}
+
 function userPhoto(User $user, $attributes = [])
 {
     return Html::image(
