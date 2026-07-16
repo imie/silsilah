@@ -143,7 +143,7 @@
                                         <input type="text" name="set_wife" class="form-control input-sm" placeholder="{{ __('app.enter_new_name') }}">
                                     </div>
                                     <div class="col-md-5">
-                                        <input type="text" name="marriage_date" class="form-control input-sm" placeholder="{{ __('couple.marriage_date') }}">
+                                        <input type="date" name="marriage_date" class="form-control input-sm" placeholder="{{ __('couple.marriage_date') }}">
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                                         <input type="text" name="set_husband" class="form-control input-sm" placeholder="{{ __('app.enter_new_name') }}">
                                     </div>
                                     <div class="col-md-5">
-                                        <input type="text" name="marriage_date" class="form-control input-sm" placeholder="{{ __('couple.marriage_date') }}">
+                                        <input type="date" name="marriage_date" class="form-control input-sm" placeholder="{{ __('couple.marriage_date') }}">
                                     </div>
                                 </div>
                             </div>

@@ -16,15 +16,10 @@ class BirthdayController extends Controller
 
     private function getUpcomingBirthdays()
     {
-        $birthdayDateRaw = "concat(YEAR(CURDATE()), '-', RIGHT(dob, 5)) as birthday_date";
+        $users = User::whereNotNull('dob')->get();
 
-        $userBirthdayQuery = User::whereNotNull('dob')
-            ->select('users.name', 'users.dob', 'users.id as user_id', DB::raw($birthdayDateRaw))
-            ->orderBy('birthday_date', 'asc')
-            ->havingBetween('birthday_date', [today()->format('Y-m-d'), today()->addDays(60)->format('Y-m-d')]);
-
-        $users = $userBirthdayQuery->get();
-
-        return $users;
+        return $users->filter(function ($user) {
+            return $user->birthday_remaining !== null && $user->birthday_remaining <= 60;
+        })->sortBy('birthday_remaining')->values();
     }
 }

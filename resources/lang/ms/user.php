@@ -1,0 +1,73 @@
+<?php
+
+return [
+    // Labels
+    'family'       => 'Keluarga',
+    'profile'      => 'Profil',
+    'spouse'       => 'Pasangan',
+    'wife'         => 'Isteri',
+    'husband'      => 'Suami',
+    'childs'       => 'Anak-anak',
+    'grand_childs' => 'Cucu-cucu',
+    'siblings'     => 'Saudara',
+    'dead'         => 'Meninggal',
+    'death'        => 'Kematian',
+    'child_name'   => 'Nama Anak',
+    'child_gender' => 'Jenis Kelamin Anak',
+    'grand_mother' => 'Nenek',
+    'grand_father' => 'Datuk',
+    'nieces'       => 'Anak Saudara',
+    'marriages'    => 'Perkahwinan',
+    'birth_order'  => 'Anak ke',
+    'age'          => 'Usia',
+    'age_years'    => 'tahun',
+
+    // Actions
+    'edit'                            => 'Sunting Profil',
+    'set_father'                      => 'Set Bapa',
+    'set_mother'                      => 'Set Ibu',
+    'set_parent'                      => 'Set Ibu Bapa',
+    'add_spouse'                      => 'Tambah Pasangan',
+    'add_wife'                        => 'Tambah Isteri',
+    'add_husband'                     => 'Tambah Suami',
+    'add_child'                       => 'Tambah Anak',
+    'add_child_from_existing_couples' => 'Dari Perkahwinan (pilih pasangan :name)',
+
+    // Attributes
+    'name'     => 'Nama',
+    'nickname' => 'Nama Panggilan',
+    'gender'   => 'Jenis Kelamin',
+    'father'   => 'Bapa',
+    'mother'   => 'Ibu',
+    'parent'   => 'Ibu Bapa',
+    'dob'      => 'Tarikh Lahir',
+    'yob'      => 'Tahun Lahir',
+    'dod'      => 'Tarikh Meninggal',
+    'yod'      => 'Tahun Meninggal',
+    'email'    => 'Email',
+    'password' => 'Password',
+    'address'  => 'Alamat',
+    'city'     => 'Kota',
+    'phone'    => 'No. Tel.',
+    'manager'  => 'Pengelola',
+
+    'cemetery_location' => 'Lokasi Kubur',
+
+    // Photo
+    'reupload_photo' => 'Upload ulang Foto',
+    'update_photo'   => 'Kemaskini Foto',
+    'upload_photo_notes' => 'Format jpg, maks: 10MB.',
+
+    // Deletion confirm attributes
+    'delete'                => 'Padam User',
+    'delete_confirm'        => 'Anda yakin akan menghapus user ini?',
+    'delete_confirm_button' => 'Saya yakin hapus user ini',
+    'spouses_count'         => 'Bilangan Pasangan',
+    'childs_count'          => 'Bilangan Anak',
+    'managed_user'          => 'Bilangan User Dikelola',
+    'managed_couple'        => 'Bilangan Pasangan Dikelola',
+    'replacement'           => 'User Pengganti',
+    'replace_confirm'       => 'Anda yakin mengganti dan menghapus user ini?',
+    'replace_delete_text'   => 'Anda harus memilih user lain sebagai pengganti.',
+    'replace_delete_button' => 'Ganti dan Padam User',
+];

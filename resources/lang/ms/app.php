@@ -1,0 +1,45 @@
+<?php
+
+return [
+    // Labels
+    'my_profile'        => 'Profil Saya',
+    'search'            => 'Cari',
+    'unknown'           => 'Tidak diketahui',
+    'male'              => 'Lelaki',
+    'female'            => 'Perempuan',
+    'male_code'         => 'L',
+    'female_code'       => 'P',
+    'family_chart'      => 'Carta Keluarga',
+    'family_tree'       => 'Salasilah Keluarga',
+    'child_count'       => 'Bilangan Anak',
+    'grand_child_count' => 'Bilangan Cucu',
+    'user_found'        => 'User ditemukan : <strong>:total Orang</strong> untuk kata kunci : <strong>:keyword</strong>',
+    'search_your_family' => 'Cari Keluarga Anda',
+    'search_your_family_placeholder' => 'Masukkan nama/panggilan... klik Cari',
+    'example'           => 'Misal:',
+    'address'           => 'Alamat',
+    'contact'           => 'Kontak',
+    'city'              => 'Kota',
+    'phone'             => 'No. Tel.',
+    'login_account'     => 'Akaun Login',
+    'childs_were_not_recorded' => 'Anak-anak belum tercatat.',
+
+    // Actions
+    'edit'              => 'Sunting',
+    'update'            => 'Kemaskini',
+    'show_profile'      => 'Lihat Profil',
+    'show_family_chart' => 'Lihat Carta Keluarga',
+    'show_family_tree'  => 'Lihat Salasilah Keluarga',
+    'show_marriages'    => 'Lihat Perkahwinan',
+    'enter_new_name'    => 'Input Nama Baru...',
+    'select_from_existing_males'   => 'Pilih dari Lelaki terdaftar',
+    'select_from_existing_females' => 'Pilih dari Wanita terdaftar',
+    'select_from_existing_couples' => 'Pilih Pasangan Perkahwinan',
+    'restore'           => 'Restore',
+    'download'          => 'Download',
+    'delete'            => 'Padam',
+    'cancel'            => 'Batal',
+
+    'open_in_google_map' => 'Buka di Google Map',
+    'data_not_available' => 'Data tidak tersedia.',
+];

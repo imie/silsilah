@@ -14,69 +14,24 @@ $udhegTotal = 0;
 ?>
 
 <div class="tree-container">
-    <div id="wrapper">
-    @include('users.partials.tree-node', ['userNode' => $user])
-    @if ($childsCount = $user->childs->count())
-    <?php $childsTotal += $childsCount ?>
-    <div class="branch lv1">
-        @foreach($user->childs as $child)
-        <div class="entry {{ $childsCount == 1 ? 'sole' : '' }}">
-            @include('users.partials.tree-node', ['userNode' => $child])
-            @if ($grandsCount = $child->childs->count())
-            <?php $grandChildsTotal += $grandsCount ?>
-            <div class="branch lv2">
-                @foreach($child->childs as $grand)
-                <div class="entry {{ $grandsCount == 1 ? 'sole' : '' }}">
-                    @include('users.partials.tree-node', ['userNode' => $grand])
-                    @if ($ggCount = $grand->childs->count())
-                    <?php $ggTotal += $ggCount ?>
-                    <div class="branch lv3">
-                        @foreach($grand->childs as $gg)
-                        <div class="entry {{ $ggCount == 1 ? 'sole' : '' }}">
-                            @include('users.partials.tree-node', ['userNode' => $gg])
-                            @if ($ggcCount = $gg->childs->count())
-                            <?php $ggcTotal += $ggcCount ?>
-                            <div class="branch lv4">
-                                @foreach($gg->childs as $ggc)
-                                <div class="entry {{ $ggcCount == 1 ? 'sole' : '' }}">
-                                    @include('users.partials.tree-node', ['userNode' => $ggc])
-                                    @if ($ggccCount = $ggc->childs->count())
-                                    <?php $ggccTotal += $ggccCount ?>
-                                    <div class="branch lv5">
-                                        @foreach($ggc->childs as $ggcc)
-                                        <div class="entry {{ $ggccCount == 1 ? 'sole' : '' }}">
-                                            @include('users.partials.tree-node', ['userNode' => $ggcc])
-                                            @if ($udhegCount = $ggcc->childs->count())
-                                            <?php $udhegTotal += $udhegCount ?>
-                                            <div class="branch lv6">
-                                                @foreach($ggcc->childs as $udheg)
-                                                <div class="entry {{ $udhegCount == 1 ? 'sole' : '' }}">
-                                                    @include('users.partials.tree-node', ['userNode' => $udheg])
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                            @endif
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @endif
-                                </div>
-                                @endforeach
-                            </div>
-                            @endif
-                        </div>
-                        @endforeach
-                    </div>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-            @endif
+    <div id="hourglass-wrapper" style="display: flex; align-items: center; justify-content: center; min-width: min-content;">
+        
+        <!-- Ancestors Section (Left) -->
+        <div class="ancestors-tree" style="display: flex; align-items: center;">
+            @include('users.partials.ancestor-tree', ['userNode' => $user, 'level' => 1])
         </div>
-        @endforeach
+
+        <!-- Current User + Descendants Section (Right) -->
+        <div id="wrapper" style="display: flex; align-items: center;">
+            <div class="entry sole" style="margin-right: 0;">
+                @include('users.partials.tree-node', ['userNode' => $user])
+                @include('users.partials.tree-branch', ['userNode' => $user, 'level' => 1])
+            </div>
+        </div>
+        
     </div>
-    @endif
 </div>
+
 </div>
 <div class="container">
 <hr>

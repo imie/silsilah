@@ -19,17 +19,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="marriage_date" class="control-label">{{ trans('couple.marriage_date') }}</label>
-                            <input type="text" name="marriage_date" id="marriage_date" class="form-control" value="{{ old('marriage_date', $couple->marriage_date) }}">
+                            <input type="date" name="marriage_date" id="marriage_date" class="form-control" value="{{ old('marriage_date', $couple->marriage_date) }}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="divorce_date" class="control-label">{{ trans('couple.divorce_date') }}</label>
-                            <input type="text" name="divorce_date" id="divorce_date" class="form-control" value="{{ old('divorce_date', $couple->divorce_date) }}">
+                            <input type="date" name="divorce_date" id="divorce_date" class="form-control" value="{{ old('divorce_date', $couple->divorce_date) }}">
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <label for="address" class="control-label">{{ trans('app.address') }}</label>
                     <textarea name="address" id="address" class="form-control">{{ old('address', $couple->address) }}</textarea>
                 </div>
@@ -43,25 +43,4 @@
     </div>
 </div>
 
-@endsection
-
-@section ('ext_css')
-<link rel="stylesheet" href="{{ asset('css/plugins/jquery.datetimepicker.css') }}">
-@endsection
-
-@section ('ext_js')
-<script src="{{ asset('js/plugins/jquery.datetimepicker.js') }}"></script>
-@endsection
-
-@section ('script')
-<script type="module">
-(function () {
-    $('#marriage_date, #divorce_date').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        closeOnDateSelect: true,
-        scrollInput: false
-    });
-})();
-</script>
 @endsection
