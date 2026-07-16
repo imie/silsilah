@@ -146,7 +146,7 @@ Feel free to submit Issue for bugs or sugestions and Pull Request.
 
 ### Family Tree
 
-![Family Tree](public/images/02-pohon-keluarga.jpg "Family Tree")
+<img width="1910" height="774" alt="image" src="https://github.com/user-attachments/assets/4761a407-f81f-4ed3-855f-5f6b839955a9" />
 
 This family tree view is using the [Horizontal Family Tree CSS](https://codepen.io/P233/pen/Kzbsi), thanks to [Peiwen Lu](https://codepen.io/P233/pen/Kzbsi).
 
