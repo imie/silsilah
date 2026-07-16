@@ -74,6 +74,28 @@ class User extends Authenticatable
         return $this->gender_id == 1 ? trans('app.male_code') : trans('app.female_code');
     }
 
+    public function getFormattedName()
+    {
+        $fatherName = $this->father_id ? $this->father->name : '';
+        $religion = \App\Setting::get('religion', 'islam');
+
+        if (!$fatherName) {
+            return $this->name;
+        }
+
+        if ($religion === 'islam') {
+            $binBinti = $this->gender_id == 1 ? ' bin ' : ' binti ';
+            return $this->name . $binBinti . $fatherName;
+        }
+
+        if ($religion === 'buddha' || $religion === 'christian') {
+            return $fatherName . ' ' . $this->name;
+        }
+
+        // other
+        return $this->name . ' ' . $fatherName;
+    }
+
     public function setFather(User $father)
     {
         if ($father->gender_id == 1) {
@@ -145,7 +167,7 @@ class User extends Authenticatable
 
     public function wifes()
     {
-        return $this->belongsToMany(User::class, 'couples', 'husband_id', 'wife_id')->using('App\CouplePivot')->withPivot(['id'])->withTimestamps()->orderBy('marriage_date');
+        return $this->belongsToMany(User::class, 'couples', 'husband_id', 'wife_id')->using('App\CouplePivot')->withPivot(['id', 'marriage_date', 'divorce_date'])->withTimestamps()->orderBy('marriage_date');
     }
 
     public function addWife(User $wife, $marriageDate = null)
@@ -164,7 +186,7 @@ class User extends Authenticatable
 
     public function husbands()
     {
-        return $this->belongsToMany(User::class, 'couples', 'wife_id', 'husband_id')->using('App\CouplePivot')->withPivot(['id'])->withTimestamps()->orderBy('marriage_date');
+        return $this->belongsToMany(User::class, 'couples', 'wife_id', 'husband_id')->using('App\CouplePivot')->withPivot(['id', 'marriage_date', 'divorce_date'])->withTimestamps()->orderBy('marriage_date');
     }
 
     public function addHusband(User $husband, $marriageDate = null)
@@ -189,10 +211,10 @@ class User extends Authenticatable
     public function couples()
     {
         if ($this->gender_id == 1) {
-            return $this->belongsToMany(User::class, 'couples', 'husband_id', 'wife_id')->using('App\CouplePivot')->withPivot(['id'])->withTimestamps()->orderBy('marriage_date');
+            return $this->belongsToMany(User::class, 'couples', 'husband_id', 'wife_id')->using('App\CouplePivot')->withPivot(['id', 'marriage_date', 'divorce_date'])->withTimestamps()->orderBy('marriage_date');
         }
 
-        return $this->belongsToMany(User::class, 'couples', 'wife_id', 'husband_id')->using('App\CouplePivot')->withPivot(['id'])->withTimestamps()->orderBy('marriage_date');
+        return $this->belongsToMany(User::class, 'couples', 'wife_id', 'husband_id')->using('App\CouplePivot')->withPivot(['id', 'marriage_date', 'divorce_date'])->withTimestamps()->orderBy('marriage_date');
     }
 
     public function marriages()

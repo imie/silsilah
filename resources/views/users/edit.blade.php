@@ -73,12 +73,6 @@
 <script type="module">
     (function() {
         $('select').select2();
-        $('#dob,#dod').datetimepicker({
-            timepicker:false,
-            format:'Y-m-d',
-            closeOnDateSelect: true,
-            scrollInput: false
-        });
     })();
 
     @if (request('tab') == 'death')

@@ -14,7 +14,8 @@ return [
     'child_count'       => 'Bilangan Anak',
     'grand_child_count' => 'Bilangan Cucu',
     'user_found'        => 'User ditemukan : <strong>:total Orang</strong> untuk kata kunci : <strong>:keyword</strong>',
-    'search_your_family' => 'Cari Keluarga Anda',
+    'search_your_family' => 'Cari Keluarga',
+    'my_family'         => 'Keluarga Saya',
     'search_your_family_placeholder' => 'Masukkan nama/panggilan... klik Cari',
     'example'           => 'Misal:',
     'address'           => 'Alamat',
@@ -42,4 +43,9 @@ return [
 
     'open_in_google_map' => 'Buka di Google Map',
     'data_not_available' => 'Data tidak tersedia.',
+    'settings'           => 'Tetapan Sistem',
+    'religion'           => 'Format Nama Agama',
+    'religion_help'      => 'Menentukan bagaimana nama digabungkan dengan nama bapa.',
+    'save'               => 'Simpan',
+    'settings_updated'   => 'Tetapan telah berjaya dikemas kini.',
 ];

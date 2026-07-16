@@ -36,7 +36,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="dob" class="control-label">{{ __('user.dob') }}</label>
-                    <input type="text" name="dob" id="dob" class="form-control" placeholder="{{ __('app.example').' 1959-07-20' }}" value="{{ old('dob', $user->dob) }}">
+                    <input type="date" name="dob" id="dob" class="form-control" placeholder="{{ __('app.example').' 1959-07-20' }}" value="{{ old('dob', $user->dob) }}">
                 </div>
             </div>
         </div>

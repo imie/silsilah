@@ -16,6 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.search') }}">{{ __('app.search_your_family') }}</a>
                 </li>
+                @if (Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.chart', Auth::id()) }}">{{ __('app.my_family') }}</a>
+                </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('birthdays.index') }}">{{ __('birthday.birthday') }}</a>
                 </li>
@@ -43,6 +48,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (is_system_admin(auth()->user()))
+                                <li><a class="dropdown-item" href="{{ route('settings.index') }}">{{ __('app.settings') }}</a></li>
                                 <li><a class="dropdown-item" href="{{ route('backups.index') }}">{{ __('backup.list') }}</a></li>
                             @endif
                             <li><a class="dropdown-item" href="{{ route('profile') }}">{{ __('app.my_profile') }}</a></li>

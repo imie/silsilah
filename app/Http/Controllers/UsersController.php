@@ -81,11 +81,24 @@ class UsersController extends Controller
         $colspan = $colspan < 4 ? 4 : $colspan;
 
         $siblings = $user->siblings();
+        $spouses = $user->couples->sort(function ($a, $b) {
+            $aDivorced = !empty($a->pivot->divorce_date);
+            $bDivorced = !empty($b->pivot->divorce_date);
+
+            if ($aDivorced !== $bDivorced) {
+                return $aDivorced ? 1 : -1;
+            }
+
+            $aDate = $a->pivot->marriage_date ?? '0000-00-00';
+            $bDate = $b->pivot->marriage_date ?? '0000-00-00';
+
+            return $bDate <=> $aDate;
+        })->values();
 
         return view('users.chart', compact(
             'user', 'childs', 'father', 'mother', 'fatherGrandpa',
             'fatherGrandma', 'motherGrandpa', 'motherGrandma',
-            'siblings', 'colspan'
+            'siblings', 'colspan', 'spouses'
         ));
     }
 

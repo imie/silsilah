@@ -8,7 +8,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="dod" class="control-label">{{ __('user.dod') }}</label>
-            <input type="text" name="dod" id="dod" class="form-control" placeholder="{{ __('app.example').' 2003-10-17' }}" value="{{ old('dod', $user->dod) }}">
+            <input type="date" name="dod" id="dod" class="form-control" placeholder="{{ __('app.example').' 2003-10-17' }}" value="{{ old('dod', $user->dod) }}">
         </div>
     </div>
 </div>

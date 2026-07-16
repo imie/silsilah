@@ -14,7 +14,8 @@ return [
     'child_count'       => 'Child Count',
     'grand_child_count' => 'Grand Child Count',
     'user_found'        => '<strong>:total</strong> found with keyword : <strong>:keyword</strong>',
-    'search_your_family' => 'Find Your Family',
+    'search_your_family' => 'Find Family',
+    'my_family'         => 'My Family',
     'search_your_family_placeholder' => 'Enter name/nickname... click Search',
     'example'           => 'Eg.',
     'address'           => 'Address',
@@ -42,4 +43,9 @@ return [
 
     'open_in_google_map' => 'Open in Google Map',
     'data_not_available' => 'Data not available.',
+    'settings'           => 'System Settings',
+    'religion'           => 'Religion Name Format',
+    'religion_help'      => 'Determines how names are combined with the father\'s name.',
+    'save'               => 'Save',
+    'settings_updated'   => 'Settings have been updated successfully.',
 ];

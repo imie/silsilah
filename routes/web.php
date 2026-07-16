@@ -84,4 +84,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('backups/{fileName}/dl', 'download')->name('backups.download');
     });
     Route::resource('backups', BackupsController::class);
+
+    Route::get('settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+    Route::post('settings', [\App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
 });
