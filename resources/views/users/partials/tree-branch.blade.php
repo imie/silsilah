@@ -37,12 +37,12 @@
                 <?php $spouse = $spouses->firstWhere('id', $spouseId); ?>
                 @if($spouse)
                     <div class="spouse-node">
-                        @include('users.partials.tree-node', ['userNode' => $spouse, 'type' => 'spouse'])
-                        @if(!empty($spouse->pivot->divorce_date))
-                            <div style="text-align: center; margin-top: 2px;">
-                                <span class="label label-danger" style="background-color: #d9534f; padding: .2em .6em .3em; font-size: 75%; font-weight: 700; line-height: 1; color: #fff; border-radius: .25em;">Divorced</span>
-                            </div>
-                        @endif
+                        @include('users.partials.tree-node', [
+                            'userNode' => $spouse, 
+                            'type' => 'spouse', 
+                            'spouseIndex' => $loop->index,
+                            'isDivorced' => !empty($spouse->pivot->divorce_date)
+                        ])
                     </div>
                 @endif
             @else

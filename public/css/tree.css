@@ -218,8 +218,12 @@ a.tree-card, a.tree-card:hover, a.tree-card:focus {
 /* Spouse Node */
 .spouse-node .tree-card {
     border-style: dashed;
-    border-color: #ec4899;
 }
+.spouse-node .tree-card.spouse-color-0 { border-color: #ec4899; }
+.spouse-node .tree-card.spouse-color-1 { border-color: #8b5cf6; }
+.spouse-node .tree-card.spouse-color-2 { border-color: #10b981; }
+.spouse-node .tree-card.spouse-color-3 { border-color: #f59e0b; }
+.spouse-node .tree-card.spouse-color-4 { border-color: #06b6d4; }
 .spouse-node .unknown-spouse {
     background: rgba(255,255,255,0.5);
     color: #94a3b8;
