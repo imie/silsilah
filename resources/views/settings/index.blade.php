@@ -17,6 +17,18 @@
 
                 <form method="POST" action="{{ route('settings.update') }}">
                     @csrf
+
+                    <div class="mb-3 row">
+                        <label for="country" class="col-md-4 col-form-label text-md-end">Country</label>
+
+                        <div class="col-md-6">
+                            <select id="country" class="form-control" name="country" required>
+                                <option value="malaysia" {{ $country === 'malaysia' ? 'selected' : '' }}>Malaysia</option>
+                                <option value="other" {{ $country === 'other' ? 'selected' : '' }}>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="mb-3 row">
                         <label for="religion" class="col-md-4 col-form-label text-md-end">{{ __('app.religion') }}</label>
 

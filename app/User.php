@@ -153,14 +153,14 @@ class User extends Authenticatable
     {
         $type = ($type == 'chart') ? 'chart' : 'show';
         
-        $style = '';
+        $attributes = [];
         $tag = '';
         if ($this->isDeceased()) {
-            $style = 'color: #777;';
+            $attributes['style'] = 'color: #777;';
             $tag = ' <span class="badge bg-secondary text-white" style="font-size: 0.7em;">' . __('user.deceased') . '</span>';
         }
 
-        $link = link_to_route('users.'.$type, $this->name, [$this->id], ['style' => $style]) . $tag;
+        $link = link_to_route('users.'.$type, $this->name, [$this->id], $attributes) . $tag;
         
         return new \Illuminate\Support\HtmlString($link);
     }
@@ -388,5 +388,25 @@ class User extends Authenticatable
         }
 
         return $defaultValue;
+    }
+
+    public function canMarry()
+    {
+        if ($this->age === null) {
+            return true;
+        }
+
+        $country = \App\Setting::get('country', 'malaysia');
+        $religion = \App\Setting::get('religion', 'islam');
+
+        if ($country === 'malaysia' && $religion === 'islam') {
+            if ($this->gender_id == 1) { // Male
+                return $this->age >= 18;
+            } else { // Female
+                return $this->age >= 16;
+            }
+        }
+
+        return $this->age >= 18;
     }
 }

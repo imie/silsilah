@@ -11,11 +11,11 @@ return [
     'ex_husband'   => 'Bekas Suami',
     'childs'       => 'Anak-anak',
     'grand_childs' => 'Cucu-cucu',
-    'siblings'     => 'Saudara',
+    'siblings'     => 'Adik Beradik',
     'dead'         => 'Meninggal',
     'death'        => 'Kematian',
     'child_name'   => 'Nama Anak',
-    'child_gender' => 'Jenis Kelamin Anak',
+    'child_gender' => 'Jantina Anak',
     'grand_mother' => 'Nenek',
     'grand_father' => 'Datuk',
     'nieces'       => 'Anak Saudara',
@@ -57,8 +57,8 @@ return [
     'cemetery_location' => 'Lokasi Kubur',
 
     // Photo
-    'reupload_photo' => 'Upload ulang Foto',
-    'update_photo'   => 'Kemaskini Foto',
+    'reupload_photo' => 'Muatnaik gambar Semula',
+    'update_photo'   => 'Kemaskini Gambar',
     'upload_photo_notes' => 'Format jpg, maks: 10MB.',
 
     // Deletion confirm attributes

@@ -20,7 +20,7 @@ class UserTest extends TestCase
     public function test_user_have_profile_link()
     {
         $user = User::factory()->create();
-        $this->assertEquals(link_to_route('users.show', $user->nickname, [$user->id]), $user->profileLink());
+        $this->assertEquals(link_to_route('users.show', $user->name, [$user->id]), $user->profileLink());
     }
 
     public function test_user_can_have_many_couples()
@@ -249,6 +249,37 @@ class UserTest extends TestCase
         Carbon::setTestNow();
     }
 
+    public function test_can_marry_logic()
+    {
+        // Case 1: Unknown age
+        $user = User::factory()->make(['dob' => null, 'yob' => null]);
+        $this->assertTrue($user->canMarry());
+
+        // Case 2: Malaysia Islam (Male 17 - False, Male 18 - True)
+        \App\Setting::set('country', 'malaysia');
+        \App\Setting::set('religion', 'islam');
+
+        Carbon::setTestNow('2020-01-01');
+        $male17 = User::factory()->make(['gender_id' => 1, 'yob' => 2003]);
+        $this->assertFalse($male17->canMarry());
+
+        $male18 = User::factory()->make(['gender_id' => 1, 'yob' => 2002]);
+        $this->assertTrue($male18->canMarry());
+
+        // Case 3: Malaysia Islam (Female 15 - False, Female 16 - True)
+        $female15 = User::factory()->make(['gender_id' => 2, 'yob' => 2005]);
+        $this->assertFalse($female15->canMarry());
+
+        $female16 = User::factory()->make(['gender_id' => 2, 'yob' => 2004]);
+        $this->assertTrue($female16->canMarry());
+
+        // Case 4: Other country (Female 16 - False, Female 18 - True)
+        \App\Setting::set('country', 'other');
+        $this->assertFalse($female16->canMarry());
+        $this->assertTrue($male18->canMarry());
+        
+        Carbon::setTestNow();
+    }
     /**
      * Provide data for calculating user age detail.
      * Returning array of today, dob, yob, dod, yod, and age.

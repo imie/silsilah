@@ -17,6 +17,12 @@ init:
 serve:
 	php artisan serve --host 0.0.0.0 --port 8000
 
+dev:
+	npm run dev
+
+build:
+	npm run build
+
 run-docker:
 	# remove existing containers to avoid conflict
 	-docker-compose -p silsilah_stack down --remove-orphans

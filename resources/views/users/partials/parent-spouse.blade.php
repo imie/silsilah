@@ -110,11 +110,13 @@
                 <th>{{ __('user.wife') }}</th>
                 <td>
                     @can ('edit', $user)
+                    @if ($user->canMarry())
                     <div class="float-end">
                         @unless (request('action') == 'add_spouse')
                             {{ link_to_route('users.show', __('user.add_wife'), [$user->id, 'action' => 'add_spouse'], ['class' => 'btn btn-link btn-xs']) }}
                         @endunless
                     </div>
+                    @endif
                     @endcan
 
                     @if ($user->wifes->isEmpty() == false)
@@ -160,11 +162,13 @@
                 <th>{{ __('user.husband') }}</th>
                 <td>
                     @can ('edit', $user)
+                    @if ($user->canMarry())
                     <div class="float-end">
                         @unless (request('action') == 'add_spouse')
                             {{ link_to_route('users.show', __('user.add_husband'), [$user->id, 'action' => 'add_spouse'], ['class' => 'btn btn-link btn-xs']) }}
                         @endunless
                     </div>
+                    @endif
                     @endcan
                     @if ($user->husbands->isEmpty() == false)
                         <ul class="list-unstyled">

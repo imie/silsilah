@@ -1,5 +1,5 @@
-# use bullseye variant because it doesn't have network issue in m1 mac & intel
-FROM php:8.1-fpm-bullseye
+# use debian variant because it doesn't have network issue in m1 mac & intel
+FROM php:8.4-fpm-bookworm
 
 # Install dependencies
 RUN apt-get update
@@ -17,7 +17,7 @@ COPY . .
 RUN mv nginx.conf /etc/nginx/nginx.conf
 
 # Install composer
-COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install
 RUN composer dumpautoload --optimize

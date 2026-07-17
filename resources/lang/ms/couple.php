@@ -12,7 +12,7 @@ return [
     'update'             => 'Kemaskini Perkahwinan',
 
     // Attributes
-    'husband'            => 'Kepala Keluarga',
+    'husband'            => 'Suami',
     'wife'               => 'Isteri',
     'marriage_date'      => 'Tarikh Perkahwinan',
     'divorce_date'       => 'Tarikh Perceraian',

@@ -14,8 +14,9 @@ class SettingsController extends Controller
         }
 
         $religion = Setting::get('religion', 'islam');
+        $country = Setting::get('country', 'malaysia');
 
-        return view('settings.index', compact('religion'));
+        return view('settings.index', compact('religion', 'country'));
     }
 
     public function update(Request $request)
@@ -26,9 +27,11 @@ class SettingsController extends Controller
 
         $request->validate([
             'religion' => 'required|in:islam,buddha,christian,other',
+            'country'  => 'required|string|max:50',
         ]);
 
         Setting::set('religion', $request->religion);
+        Setting::set('country', $request->country);
 
         return back()->with('success', __('app.settings_updated'));
     }
