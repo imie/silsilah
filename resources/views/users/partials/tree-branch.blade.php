@@ -28,7 +28,7 @@
     }
 ?>
 @if (count($spouseGroups) > 0)
-<div class="branch lv{{ $level }}">
+<div class="branch lv{{ $level }} {{ count($spouseGroups) == 1 ? 'single-spouse-branch' : '' }}">
     @foreach($spouseGroups as $spouseId => $children)
         <div class="entry {{ count($spouseGroups) == 1 ? 'sole' : '' }}">
             
@@ -60,13 +60,13 @@
             @if ($children->count())
             <div class="branch spouse-children">
                 @foreach($children as $child)
-                    <div class="entry {{ $children->count() == 1 ? 'sole' : '' }}">
-                        @include('users.partials.tree-node', ['userNode' => $child])
-                        
-                        {{-- Recurse up to 7 levels natively --}}
-                        @if($level < 7)
-                            @include('users.partials.tree-branch', ['userNode' => $child, 'level' => $level + 1])
-                        @endif
+                    @php
+                        $childHasSpouse = $child->couples->count() > 0;
+                        $childGenderClass = $child->gender_id == 1 ? 'child-gender-male' : 'child-gender-female';
+                        $hasCoupleClass = $childHasSpouse ? 'has-couple' : '';
+                    @endphp
+                    <div class="entry {{ $children->count() == 1 ? 'sole' : '' }} {{ $childGenderClass }} {{ $hasCoupleClass }}">
+                        @include('users.partials.tree-node-parent', ['userNode' => $child, 'level' => $level + 1])
                     </div>
                 @endforeach
             </div>

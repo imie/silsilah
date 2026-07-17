@@ -1,4 +1,4 @@
-<div class="card card bg-light">
+<div class="card bg-light mb-4">
     <div class="card-header"><h3 class="card-title">{{ __('app.address') }} &amp; {{ __('app.contact') }}</h3></div>
     <div class="card-body">
         <div class="form-group">

@@ -1,6 +1,6 @@
-import $ from 'jquery';
-window.$ = window.jQuery = $;
-    
+// jQuery is loaded via CDN in layout
+// import $ from 'jquery';
+// window.$ = window.jQuery = $;
 import 'bootstrap';
 
 

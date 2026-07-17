@@ -38,7 +38,7 @@ return [
     // Attributes
     'name'     => 'Nama',
     'nickname' => 'Nama Panggilan',
-    'gender'   => 'Jenis Kelamin',
+    'gender'   => 'Jantina',
     'father'   => 'Bapa',
     'mother'   => 'Ibu',
     'parent'   => 'Ibu Bapa',

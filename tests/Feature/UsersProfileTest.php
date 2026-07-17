@@ -53,7 +53,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', $user->id));
         $this->seePageIs(route('users.edit', $user->id));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'nickname' => 'Nama Panggilan',
             'name' => 'Nama User',
             'gender_id' => 1,
@@ -78,7 +78,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', $user->id));
         $this->seePageIs(route('users.edit', $user->id));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'dob' => '',
             'yob' => '2003',
         ]);
@@ -96,7 +96,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'contact_address']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'contact_address']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'address' => 'Jln. Angkasa, No. 70',
             'city' => 'Nama Kota',
             'phone' => '081234567890',
@@ -116,7 +116,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'email' => '',
             'password' => '',
         ]);
@@ -134,7 +134,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'death']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'dod' => '2003-10-17',
             'yod' => '',
         ]);
@@ -152,7 +152,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'death']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'dod' => '',
             'yod' => '2003',
         ]);
@@ -170,7 +170,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'death']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'death']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'dod' => '',
             'yod' => '2003',
             'cemetery_location_name' => 'Some name',
@@ -235,7 +235,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'email' => 'user@mail.com',
             'password' => 'Secr3t',
         ]);
@@ -252,7 +252,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'email' => 'user@mail.com',
             'password' => '',
         ]);
@@ -272,7 +272,7 @@ class UsersProfileTest extends TestCase
         $this->visit(route('users.edit', [$user->id, 'tab' => 'login_account']));
         $this->seePageIs(route('users.edit', [$user->id, 'tab' => 'login_account']));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm('update_profile_button', [
             'email' => 'user@mail.com',
             'password' => '',
         ]);

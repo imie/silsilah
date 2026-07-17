@@ -42,9 +42,9 @@
     @yield('script')
     <script type="module">
         var header = $('h2.page-header').contents();
-        str = '';
-        mainText = header.filter(function () {
-                // return type of text
+        let str = '';
+        let mainText = header.filter(function () {
+            // return type of text
                 return this.nodeType === 3;
             })[0];
         str += mainText.data.trim();

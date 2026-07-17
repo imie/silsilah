@@ -100,8 +100,8 @@
     </table>
 </div>
 
-<h4 class="page-header">
-    {{ trans('user.siblings') }}, {{ trans('user.nieces') }}, & {{ trans('user.grand_childs') }}
+<h4 class="page-header mt-5">
+    {{ trans('user.siblings') }}, {{ trans('user.nieces') }} & {{ trans('user.grand_childs') }}
 </h4>
 @foreach ($siblings->chunk(3) as $chunkedSiblings)
 <div class="row">

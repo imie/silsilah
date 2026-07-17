@@ -329,3 +329,270 @@ a.tree-card, a.tree-card:hover, a.tree-card:focus {
 .ancestors-tree > .ancestor-branch {
     margin-right: 80px;
 }
+
+/* Couple Wrapper (for Husband + Wife stacked) */
+.couple-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+.couple-wrapper .tree-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+/* Bracket connecting Husband and Wife */
+.couple-wrapper:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    top: 26px; /* Center of the top card (min-height 52px / 2 = 26px) */
+    bottom: 26px; /* Center of the bottom card */
+    right: -20px;
+    border: 2px solid #cbd5e1;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    pointer-events: none;
+}
+
+/* Shift vertical line for children of a couple */
+.branch.couple-children > .entry:before {
+    left: -20px;
+}
+/* Shift horizontal line for children of a couple */
+.branch.couple-children > .entry:after,
+.tree-card.gender-female .tree-avatar {
+    background-color: #fdf2f8;
+    color: #db2777;
+}
+
+/* Details */
+.tree-details {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tree-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1e293b;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tree-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Hide default link decoration for these cards */
+a.tree-card, a.tree-card:hover, a.tree-card:focus {
+    text-decoration: none;
+}
+
+.tree-card.chart-mode {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    display: inline-flex;
+    margin: 5px auto;
+}
+.tree-card.chart-mode:hover {
+    transform: scale(1.03);
+}
+
+/* Spouse Node */
+.spouse-node .tree-card {
+    border-style: dashed;
+}
+.spouse-node .tree-card.spouse-color-0 { border-color: #ec4899; }
+.spouse-node .tree-card.spouse-color-1 { border-color: #8b5cf6; }
+.spouse-node .tree-card.spouse-color-2 { border-color: #10b981; }
+.spouse-node .tree-card.spouse-color-3 { border-color: #f59e0b; }
+.spouse-node .tree-card.spouse-color-4 { border-color: #06b6d4; }
+.spouse-node .unknown-spouse {
+    background: rgba(255,255,255,0.5);
+    color: #94a3b8;
+    border-color: #cbd5e1;
+}
+
+/* Ancestor Tree Structure (Mirrored leftward) */
+.ancestor-branch {
+    position: relative;
+    margin-right: 320px; 
+}
+
+.ancestor-branch:before {
+    content: "";
+    width: 40px;
+    border-top: 2px solid #cbd5e1;
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    margin-top: -1px;
+}
+
+.ancestor-entry {
+    position: relative;
+    min-height: 80px; 
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    justify-content: flex-end; /* cards align right */
+}
+
+/* Vertical Line connecting siblings */
+.ancestor-entry:before {
+    content: "";
+    height: 100%;
+    border-right: 2px solid #cbd5e1;
+    position: absolute;
+    right: -40px;
+}
+
+/* Horizontal Line to this specific child */
+.ancestor-entry:after {
+    content: "";
+    width: 40px;
+    border-top: 2px solid #cbd5e1;
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    margin-top: -1px;
+}
+
+/* Top-most rounded corner */
+.ancestor-entry:first-child:before {
+    width: 15px;
+    height: 50%;
+    top: 50%;
+    margin-top: 1px;
+    border-radius: 0 12px 0 0;
+}
+.ancestor-entry:first-child:after {
+    height: 15px;
+    border-radius: 0 12px 0 0;
+}
+
+/* Bottom-most rounded corner */
+.ancestor-entry:last-child:before {
+    width: 15px;
+    height: 50%;
+    border-radius: 0 0 12px 0;
+}
+.ancestor-entry:last-child:after {
+    height: 15px;
+    border-top: none;
+    border-bottom: 2px solid #cbd5e1;
+    border-radius: 0 0 12px 0;
+    margin-top: -16px;
+}
+
+/* Sole child */
+.ancestor-entry.sole:before {
+    display: none;
+}
+.ancestor-entry.sole:after {
+    width: 40px;
+    height: 0;
+    margin-top: -1px;
+    border-radius: 0;
+}
+
+/* Override absolute positioning for ancestor nodes */
+.ancestor-entry .tree-card {
+    position: absolute;
+    left: auto;
+    right: 0;
+}
+
+.ancestors-tree > .ancestor-branch {
+    margin-right: 80px;
+}
+
+/* Couple Wrapper (for Husband + Wife stacked) */
+.couple-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+.couple-wrapper .tree-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+/* Bracket connecting Husband and Wife */
+.couple-wrapper:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    top: 26px; /* Center of the top card (min-height 52px / 2 = 26px) */
+    bottom: 26px; /* Center of the bottom card */
+    right: -20px;
+    border: 2px solid #cbd5e1;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    pointer-events: none;
+}
+
+/* Shift vertical line for children of a couple */
+.branch.couple-children > .entry:before {
+    left: -20px;
+}
+/* Shift horizontal line for children of a couple */
+.branch.couple-children > .entry:after,
+.branch.couple-children > .entry.sole:after {
+    width: 20px;
+    left: -20px;
+}
+
+/* Hide hanging horizontal line inside couple wrapper gap */
+.branch.couple-children:before {
+    display: none !important;
+}
+
+/* Hide floating left line for root user with no parents */
+.entry.root.no-parents:after {
+    display: none !important;
+}
+
+/* Adjust horizontal line for blood child in a couple */
+.entry.has-couple.child-gender-male:after {
+    top: 26px !important;
+    bottom: auto !important;
+}
+.entry.has-couple.child-gender-female:after {
+    top: auto !important;
+    bottom: 26px !important;
+}
+
+/* Adjust vertical line connections for top/bottom siblings that are couples */
+.entry.has-couple.child-gender-male:first-child:before {
+    top: 26px !important;
+    height: calc(100% - 26px) !important;
+}
+.entry.has-couple.child-gender-female:last-child:before {
+    height: calc(100% - 26px) !important;
+}

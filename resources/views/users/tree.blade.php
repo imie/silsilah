@@ -23,9 +23,11 @@ $udhegTotal = 0;
 
         <!-- Current User + Descendants Section (Right) -->
         <div id="wrapper" style="display: flex; align-items: center;">
-            <div class="entry sole" style="margin-right: 0;">
-                @include('users.partials.tree-node', ['userNode' => $user])
-                @include('users.partials.tree-branch', ['userNode' => $user, 'level' => 1])
+            @php
+                $hasParents = $user->father_id || $user->mother_id;
+            @endphp
+            <div class="entry sole root {{ $hasParents ? 'has-parents' : 'no-parents' }}" style="margin-right: 0;">
+                @include('users.partials.tree-node-parent', ['userNode' => $user, 'level' => 1])
             </div>
         </div>
         
