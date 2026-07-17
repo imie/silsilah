@@ -6,9 +6,9 @@
     "type": "project",
     "repositories": [],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "intervention/image-laravel": "*",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^13.0",
         "laravel/tinker": "*",
         "laravel/ui": "*"
     },
