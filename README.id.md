@@ -66,9 +66,9 @@ Aplikasi ini menggunakan Bahasa Indonesia dan Bahasa Inggris, diatur pada `confi
 
 ### Kebutuhan Server
 
-Aplikasi ini dapat dipasang pada server lokal dan onlne dengan spesifikasi berikut:
+Aplikasi ini dapat dipasang pada server lokal dan online dengan spesifikasi berikut:
 
-1. PHP 7.3 (dan mengikuti [server requirements Laravel 8.x](https://laravel.com/docs/8.x/deployment#server-requirements) lainnya),
+1. PHP 8.3 (dan mengikuti [server requirements Laravel 13.x](https://laravel.com/docs/13.x/deployment#server-requirements) lainnya),
 2. Database MySQL atau MariaDB,
 3. SQlite (untuk automated testing).
 
@@ -150,21 +150,21 @@ vendor/bin/phpunit
 
 ### Pohon Keluarga
 
-![Pohon Keluarga](public/images/02-pohon-keluarga.jpg "Pohon Keluarga")
+<img width="1910" height="774" alt="image" src="https://github.com/user-attachments/assets/4761a407-f81f-4ed3-855f-5f6b839955a9" />
 
 Tampilan pohon keluarga ini menggunakan [Horizontal Family Tree CSS](https://codepen.io/P233/pen/Kzbsi), terima kasih kepada [Peiwen Lu](https://codepen.io/P233/pen/Kzbsi).
 
 ### Bagan Keluarga
 
-![Bagan Keluarga](public/images/03-bagan-keluarga.jpg "Bagan Keluarga")
+<img width="1917" height="660" alt="image" src="https://github.com/user-attachments/assets/3ab6c4d9-6aca-48be-8f69-8c06bcd1b959" />
 
 ### Cari Keluarga
 
-![Cari Keluarga](public/images/01-cari-keluarga.jpg "Cari Keluarga")
+<img width="1915" height="724" alt="image" src="https://github.com/user-attachments/assets/286402d7-d77f-4f74-a53e-438d596c20bb" />
 
 ### Profil
 
-![Profil](public/images/04-profil.jpg "Profil")
+<img width="1916" height="875" alt="image" src="https://github.com/user-attachments/assets/76d29837-4372-42c3-9b18-35072843093c" />
 
 ### Form Profil
 
