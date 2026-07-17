@@ -60,7 +60,7 @@ This application uses Bahasa Indonesia and English based on `config.locale`.
 
 This application can be installed on local server and online server with these specifications :
 
-1. PHP 7.3 (and meet other [Laravel 8.x server requirements](https://laravel.com/docs/8.x/deployment#server-requirements)),
+1. PHP 8.3 (and meet other [Laravel 13.x server requirements]([https://laravel.com/docs/13.x/deployment]),
 2. MySQL or MariaDB database,
 3. SQlite (for automated testing).
 
@@ -152,15 +152,15 @@ This family tree view is using the [Horizontal Family Tree CSS](https://codepen.
 
 ### Family Chart
 
-![Family Chart](public/images/03-bagan-keluarga.jpg "Family Chart")
+<img width="1917" height="660" alt="image" src="https://github.com/user-attachments/assets/3ab6c4d9-6aca-48be-8f69-8c06bcd1b959" />
 
 ### Search Family Member
 
-![Search Family Member](public/images/01-cari-keluarga.jpg "Search Family Member")
+<img width="1915" height="724" alt="image" src="https://github.com/user-attachments/assets/286402d7-d77f-4f74-a53e-438d596c20bb" />
 
 ### User Profile
 
-![User Profile](public/images/04-profil.jpg "User Profile")
+<img width="1916" height="875" alt="image" src="https://github.com/user-attachments/assets/76d29837-4372-42c3-9b18-35072843093c" />
 
 ### Profile Form
 
