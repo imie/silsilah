@@ -25,6 +25,16 @@
                     <input type="number" name="birth_order" id="birth_order" class="form-control" min="1" value="{{ old('birth_order', $user->birth_order) }}">
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="is_deceased" class="control-label">Deceased</label>
+                    <div style="margin-top: 8px;">
+                        <input type="hidden" name="is_deceased" value="0">
+                        <input type="checkbox" name="is_deceased" id="is_deceased" value="1" {{ old('is_deceased', $user->is_deceased) ? 'checked' : '' }}>
+                        <label for="is_deceased" style="font-weight: normal; margin-left: 5px;">Yes</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -37,6 +47,20 @@
                 <div class="form-group">
                     <label for="dob" class="control-label">{{ __('user.dob') }}</label>
                     <input type="date" name="dob" id="dob" class="form-control" placeholder="{{ __('app.example').' 1959-07-20' }}" value="{{ old('dob', $user->dob) }}">
+                </div>
+            </div>
+        </div>
+        <div class="row" id="death_fields" style="display: {{ old('is_deceased', $user->is_deceased) ? 'flex' : 'none' }};">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="yod" class="control-label">{{ __('user.yod') }}</label>
+                    <input type="text" name="yod" id="yod" class="form-control" placeholder="{{ __('app.example').' 2003' }}" value="{{ old('yod', $user->yod) }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dod" class="control-label">{{ __('user.dod') }}</label>
+                    <input type="date" name="dod" id="dod" class="form-control" placeholder="{{ __('app.example').' 2003-10-17' }}" value="{{ old('dod', $user->dod) }}">
                 </div>
             </div>
         </div>

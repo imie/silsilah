@@ -1,4 +1,4 @@
-<div class="card card bg-light">
+<div class="card card bg-light mb-3">
     <div class="card-header"><h3 class="card-title">{{ __('user.family') }}</h3></div>
 
     <table class="table">

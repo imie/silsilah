@@ -3,8 +3,9 @@ $type = $type ?? 'tree';
 $spouseIndex = $spouseIndex ?? 0;
 $isDivorced = $isDivorced ?? false;
 $spouseClass = $type == 'spouse' ? 'spouse-color-' . ($spouseIndex % 5) : '';
+$deceasedClass = $userNode->isDeceased() ? 'node-deceased' : '';
 ?>
-<a href="{{ route('users.tree', $userNode->id) }}" class="tree-card {{ $type == 'chart' ? 'chart-mode' : '' }} gender-{{ $userNode->gender_id == 1 ? 'male' : 'female' }} {{ $spouseClass }}" title="{{ $userNode->name }} ({{ $userNode->gender }})">
+<a href="{{ route('users.tree', $userNode->id) }}" class="tree-card {{ $type == 'chart' ? 'chart-mode' : '' }} gender-{{ $userNode->gender_id == 1 ? 'male' : 'female' }} {{ $spouseClass }} {{ $deceasedClass }}" title="{{ $userNode->name }} ({{ $userNode->gender }})">
     <div class="tree-avatar">
         @if($userNode->photo_path && file_exists(storage_path('app/public/' . $userNode->photo_path)))
             <img src="{{ asset('storage/' . $userNode->photo_path) }}" alt="{{ $userNode->name }}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
@@ -13,7 +14,14 @@ $spouseClass = $type == 'spouse' ? 'spouse-color-' . ($spouseIndex % 5) : '';
         @endif
     </div>
     <div class="tree-details">
-        <span class="tree-name">{{ $userNode->nickname ?: $userNode->name }}</span>
+        <span class="tree-name" style="{{ $userNode->isDeceased() ? 'color: #777;' : '' }}">
+            {{ $userNode->nickname ?: $userNode->name }}
+        </span>
+        @if($userNode->isDeceased())
+            <div style="margin-top: 2px;">
+                <span class="badge bg-secondary" style="font-size: 0.6em; padding: 2px 4px;">{{ __('user.deceased') }}</span>
+            </div>
+        @endif
         <span class="tree-subtitle">
             @if($type == 'spouse')
                 <span style="background-color: {{ $userNode->gender_id == 1 ? '#3b82f6' : '#ec4899' }}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">

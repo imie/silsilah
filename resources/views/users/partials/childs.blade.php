@@ -1,4 +1,4 @@
-<div class="card card bg-light">
+<div class="card card bg-light mb-3">
     <div class="card-header">
         @can ('edit', $user)
         <div class="float-end" style="margin: -3px -6px">
@@ -10,8 +10,24 @@
 
     <ul class="list-group">
         @forelse($user->childs as $child)
-            <li class="list-group-item">
-                {{ $child->profileLink() }} ({{ $child->gender }})
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    {{ $child->profileLink() }} ({{ $child->gender }})
+                </div>
+                @can('edit', $user)
+                <div class="btn-group btn-group-sm">
+                    <form method="POST" action="{{ route('family-actions.rearrange-child', [$user->id, $child->id]) }}" style="display:inline;">
+                        @csrf
+                        <input type="hidden" name="direction" value="up">
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" {{ $loop->first ? 'disabled' : '' }} title="Move Up">&#x25B2;</button>
+                    </form>
+                    <form method="POST" action="{{ route('family-actions.rearrange-child', [$user->id, $child->id]) }}" style="display:inline;">
+                        @csrf
+                        <input type="hidden" name="direction" value="down">
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" {{ $loop->last ? 'disabled' : '' }} title="Move Down">&#x25BC;</button>
+                    </form>
+                </div>
+                @endcan
             </li>
         @empty
             <li class="list-group-item">{{ __('app.childs_were_not_recorded') }}</li>

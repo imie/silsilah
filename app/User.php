@@ -44,7 +44,7 @@ class User extends Authenticatable
         'nickname', 'gender_id', 'name',
         'email', 'password',
         'address', 'phone',
-        'dob', 'yob', 'dod', 'yod', 'city',
+        'dob', 'yob', 'dod', 'yod', 'city', 'is_deceased',
         'father_id', 'mother_id', 'parent_id',
     ];
 
@@ -152,7 +152,17 @@ class User extends Authenticatable
     public function profileLink($type = 'profile')
     {
         $type = ($type == 'chart') ? 'chart' : 'show';
-        return link_to_route('users.'.$type, $this->name, [$this->id]);
+        
+        $style = '';
+        $tag = '';
+        if ($this->isDeceased()) {
+            $style = 'color: #777;';
+            $tag = ' <span class="badge bg-secondary text-white" style="font-size: 0.7em;">' . __('user.deceased') . '</span>';
+        }
+
+        $link = link_to_route('users.'.$type, $this->name, [$this->id], ['style' => $style]) . $tag;
+        
+        return new \Illuminate\Support\HtmlString($link);
     }
 
     public function fatherLink()
@@ -270,15 +280,20 @@ class User extends Authenticatable
         return $this->hasMany(Couple::class, 'manager_id');
     }
 
+    public function isDeceased()
+    {
+        return $this->is_deceased || $this->dod || $this->yod || $this->cemetery_location_name;
+    }
+
     public function getAgeAttribute()
     {
         $ageDetail = null;
         $yearOnlySuffix = Carbon::now()->format('-m-d');
 
-        if ($this->dob && !$this->dod) {
+        if ($this->dob && !$this->dod && !$this->isDeceased()) {
             $ageDetail = (int) Carbon::parse($this->dob)->diffInYears();
         }
-        if (!$this->dob && $this->yob) {
+        if (!$this->dob && $this->yob && !$this->isDeceased()) {
             $ageDetail = (int) Carbon::parse($this->yob.$yearOnlySuffix)->diffInYears();
         }
         if ($this->dob && $this->dod) {
@@ -299,10 +314,10 @@ class User extends Authenticatable
         $ageDetail = null;
         $yearOnlySuffix = Carbon::now()->format('-m-d');
 
-        if ($this->dob && !$this->dod) {
+        if ($this->dob && !$this->dod && !$this->isDeceased()) {
             $ageDetail = Carbon::parse($this->dob)->timespan();
         }
-        if (!$this->dob && $this->yob) {
+        if (!$this->dob && $this->yob && !$this->isDeceased()) {
             $ageDetail = Carbon::parse($this->yob.$yearOnlySuffix)->timespan();
         }
         if ($this->dob && $this->dod) {

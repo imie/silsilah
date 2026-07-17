@@ -46,6 +46,7 @@ return [
     'yob'      => 'Tahun Lahir',
     'dod'      => 'Tanggal Meninggal',
     'yod'      => 'Tahun Meninggal',
+    'deceased' => 'Meninggal',
     'email'    => 'Email',
     'password' => 'Password',
     'address'  => 'Alamat',

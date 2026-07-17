@@ -194,4 +194,46 @@ class FamilyActionsController extends Controller
 
         return redirect()->route('users.show', $user);
     }
+
+    /**
+     * Rearrange child position.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @param  \App\User  $child
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function rearrangeChild(Request $request, User $user, User $child)
+    {
+        $direction = $request->get('direction');
+        
+        $siblings = $user->childs;
+        
+        $currentIndex = $siblings->search(function ($item) use ($child) {
+            return $item->id === $child->id;
+        });
+
+        if ($currentIndex !== false) {
+            $swapIndex = $direction === 'up' ? $currentIndex - 1 : $currentIndex + 1;
+            
+            if (isset($siblings[$swapIndex])) {
+                $swapChild = $siblings[$swapIndex];
+                
+                $tempOrder = $child->birth_order;
+                $child->birth_order = $swapChild->birth_order ?: ($swapIndex + 1);
+                $swapChild->birth_order = $tempOrder ?: ($currentIndex + 1);
+                
+                // If both were 0 or null, we force an order based on position
+                if ($child->birth_order === $swapChild->birth_order) {
+                    $child->birth_order = $direction === 'up' ? 1 : 2;
+                    $swapChild->birth_order = $direction === 'up' ? 2 : 1;
+                }
+                
+                $child->save();
+                $swapChild->save();
+            }
+        }
+        
+        return back();
+    }
 }

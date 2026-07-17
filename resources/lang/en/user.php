@@ -46,6 +46,7 @@ return [
     'yob'      => 'Year of Birth',
     'dod'      => 'Date of Death',
     'yod'      => 'Year of Death',
+    'deceased' => 'Deceased',
     'email'    => 'Email',
     'password' => 'Password',
     'address'  => 'Address',

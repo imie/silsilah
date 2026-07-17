@@ -9,55 +9,31 @@
             <tr>
                 <th style="width: 9%">{{ trans('user.grand_father') }} & {{ trans('user.grand_mother') }}</th>
                 <td class="text-center">
-                    @if($fatherGrandpa)
-                        @include('users.partials.tree-node', ['userNode' => $fatherGrandpa, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $fatherGrandpa ? $fatherGrandpa->profileLink('chart') : '?' !!}
                 </td>
                 <td class="text-center">
-                    @if($fatherGrandma)
-                        @include('users.partials.tree-node', ['userNode' => $fatherGrandma, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $fatherGrandma ? $fatherGrandma->profileLink('chart') : '?' !!}
                 </td>
                 <td class="text-center">
-                    @if($motherGrandpa)
-                        @include('users.partials.tree-node', ['userNode' => $motherGrandpa, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $motherGrandpa ? $motherGrandpa->profileLink('chart') : '?' !!}
                 </td>
                 <td class="text-center">
-                    @if($motherGrandma)
-                        @include('users.partials.tree-node', ['userNode' => $motherGrandma, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $motherGrandma ? $motherGrandma->profileLink('chart') : '?' !!}
                 </td>
             </tr>
             <tr>
                 <th>{{ trans('user.father') }} & {{ trans('user.mother') }}</th>
                 <td class="text-center" colspan="2">
-                    @if($father)
-                        @include('users.partials.tree-node', ['userNode' => $father, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $father ? $father->profileLink('chart') : '?' !!}
                 </td>
                 <td class="text-center" colspan="2">
-                    @if($mother)
-                        @include('users.partials.tree-node', ['userNode' => $mother, 'type' => 'chart'])
-                    @else
-                        ?
-                    @endif
+                    {!! $mother ? $mother->profileLink('chart') : '?' !!}
                 </td>
             </tr>
             <tr>
                 <th>&nbsp;</th>
                 <td class="text-center lead" colspan="4">
-                    <strong>@include('users.partials.tree-node', ['userNode' => $user, 'type' => 'chart']) ({{ $user->gender }})</strong>
+                    <strong>{!! $user->profileLink('chart') !!} ({{ $user->gender }})</strong>
                 </td>
             </tr>
             <tr>
@@ -82,15 +58,19 @@
                     @forelse($spouseGroups as $spouseId => $groupedChilds)
                         <?php 
                             $spouse = $spouseId === 'unknown' ? null : $spouses->firstWhere('id', $spouseId);
+                            $isDivorced = $spouse && !empty($spouse->pivot->divorce_date);
                         ?>
                         <div style="background-color: #fff; padding: 10px; border: 1px solid #eee; margin-bottom: 15px;">
                             <h4 style="margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
                                 @if($spouse)
-                                    <small class="text-muted">{{ $user->gender_id == 1 ? trans('user.wife') : trans('user.husband') }}:</small> 
-                                    @include('users.partials.tree-node', ['userNode' => $spouse, 'type' => 'chart'])
-                                    @if(!empty($spouse->pivot->divorce_date))
-                                        <span class="label label-danger" style="margin-left: 5px; background-color: #d9534f; padding: .2em .6em .3em; font-size: 75%; font-weight: 700; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;">Divorced</span>
-                                    @endif
+                                    <small class="text-muted">
+                                        @if($user->gender_id == 1)
+                                            {{ $isDivorced ? trans('user.ex_wife') : trans('user.wife') }}:
+                                        @else
+                                            {{ $isDivorced ? trans('user.ex_husband') : trans('user.husband') }}:
+                                        @endif
+                                    </small>
+                                    {!! $spouse->profileLink('chart') !!} ({{ $spouse->gender }})
                                 @else
                                     <small class="text-muted">{{ trans('app.unknown') }} {{ $user->gender_id == 1 ? trans('user.wife') : trans('user.husband') }}</small>
                                 @endif
@@ -100,10 +80,10 @@
                             <div class="row">
                                 @foreach($chunkedChild as $child)
                                 <div class="col-md-3">
-                                    <h5><strong>{{ ++$no }}. @include('users.partials.tree-node', ['userNode' => $child, 'type' => 'chart']) ({{ $child->gender }})</strong></h5>
-                                    <ul style="padding-left: 30px">
+                                    <h5><strong>{{ ++$no }}. {!! $child->profileLink('chart') !!} ({{ $child->gender }})</strong></h5>
+                                    <ul style="padding-left: 30px; margin-bottom: 0;">
                                         @foreach($child->childs as $grand)
-                                        <li>@include('users.partials.tree-node', ['userNode' => $grand, 'type' => 'chart']) ({{ $grand->gender }})</li>
+                                        <li>{!! $grand->profileLink('chart') !!} ({{ $grand->gender }})</li>
                                         @endforeach
                                     </ul>
                                 </div>

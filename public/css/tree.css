@@ -144,6 +144,12 @@ body {
     border-left: 4px solid #ec4899; /* Pink border */
 }
 
+/* Tree Node Styling */
+.tree-card.node-deceased {
+    border-color: #777 !important;
+    background-color: #f8f9fa !important;
+}
+
 /* Avatar */
 .tree-avatar {
     width: 40px;

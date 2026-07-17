@@ -39,6 +39,7 @@ class UpdateRequest extends FormRequest
             'email'       => 'nullable|string|max:255',
             'password'    => 'nullable|min:6|max:15',
             'birth_order' => 'nullable|numeric|min:1',
+            'is_deceased' => 'sometimes|boolean',
 
             'cemetery_location_name'      => 'nullable|string|max:255',
             'cemetery_location_address'   => 'nullable|string|max:255',

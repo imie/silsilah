@@ -73,6 +73,14 @@
 <script type="module">
     (function() {
         $('select').select2();
+
+        $('#is_deceased').change(function() {
+            if ($(this).is(':checked')) {
+                $('#death_fields').css('display', 'flex');
+            } else {
+                $('#death_fields').hide();
+            }
+        });
     })();
 
     @if (request('tab') == 'death')
