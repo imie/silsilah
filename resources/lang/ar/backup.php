@@ -2,26 +2,26 @@
 
 return [
     // Labels
-    'index_title' => 'Database Backup Manager',
-    'list'        => 'Backup File List',
-    'actions'     => 'Actions',
-    'empty'       => 'No backup file available.',
+    'index_title' => 'مدير ملفات النسخ الاحتياطي',
+    'list'        => 'قائمة ملفات النسخ الاحتياطي',
+    'actions'     => 'الإجراءات',
+    'empty'       => 'لا يوجد ملفات نسخ احتياطية.',
 
     // Actions
-    'create'              => 'Create Backup File',
-    'delete'              => 'Delete this backup file',
-    'sure_to_delete_file' => 'Are you sure to delete this file <strong>":filename"</strong>?',
-    'confirm_delete'      => 'YES, please delete this file!',
-    'cancel_delete'       => 'Cancel Delete',
-    'restore'             => 'Restore database from file',
-    'sure_to_restore'     => 'Are you sure to restore database with this backup file "<strong>:filename</strong>"? <br><br>Please make sure your <strong>current database has been backed up</strong>.',
-    'confirm_restore'     => 'YES, Restore Database!',
-    'cancel_restore'      => 'Cancel Restore',
-    'download'            => 'Download this file',
-    'upload'              => 'Upload Backup File',
+    'create'              => 'إنشاء ملف نسخ احتياطي',
+    'delete'              => 'حذف ملف النسخ الاحتياطي',
+    'sure_to_delete_file' => 'هل أنت متأكد من حذف هذا الملف <strong>":filename"</strong>؟',
+    'confirm_delete'      => 'نعم، يرجى حذف هذا الملف!',
+    'cancel_delete'       => 'إلغاء الحذف',
+    'restore'             => 'استعادة قاعدة البيانات من الملف',
+    'sure_to_restore'     => 'هل أنت متأكد من استعادة قاعدة البيانات من هذا الملف "<strong>:filename</strong>"؟ <br><br>يرجى التأكد من <strong>نسخ قاعدة البيانات الحالية</strong>.',
+    'confirm_restore'     => 'نعم، استعادة قاعدة البيانات!',
+    'cancel_restore'      => 'إلغاء الاستعادة',
+    'download'            => 'تحميل هذا الملف',
+    'upload'              => 'رفع ملف النسخ الاحتياطي',
 
     // Attributes
-    'file_name'  => 'File Name',
-    'file_size'  => 'File Size',
-    'created_at' => 'Created at',
+    'file_name'  => 'اسم الملف',
+    'file_size'  => 'حجم الملف',
+    'created_at' => 'تاريخ الانشاء',
 ];

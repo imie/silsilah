@@ -2,18 +2,18 @@
 
 return [
     // Labels
-    'show'               => 'Show Marriage Profile',
-    'detail'             => 'Marriage Profile',
-    'childs_count'       => 'Childs Count',
-    'grand_childs_count' => 'Grand Childs Count',
+    'show'               => 'عرض الملف الشخصي للزواج',
+    'detail'             => 'الملف الشخصي للزواج',
+    'childs_count'       => 'عدد الأبناء',
+    'grand_childs_count' => 'عدد الأحفاد',
 
     // Actions
-    'edit'               => 'Edit Marriage',
-    'update'             => 'Update Marriage',
+    'edit'               => 'تعديل الزواج',
+    'update'             => 'تحديث الزواج',
 
     // Attributes
-    'husband'            => 'Head of Family',
-    'wife'               => 'Wife',
-    'marriage_date'      => 'Marriage Date',
-    'divorce_date'       => 'Divorce Date',
+    'husband'            => 'رئيس الأسرة',
+    'wife'               => 'الزوجة',
+    'marriage_date'      => 'تاريخ الزواج',
+    'divorce_date'       => 'تاريخ الطلاق',
 ];

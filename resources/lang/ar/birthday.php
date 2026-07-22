@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'birthday'    => 'Birthday',
-    'upcoming'    => 'Upcoming birthdays',
-    'no_upcoming' => 'No upcoming birthdays in the next :days days.',
-    'remaining'   => ':count days',
-    'age_years'   => ':age years',
-    'days'        => 'days',
+    'birthday'    => 'عيد ميلاد',
+    'upcoming'    => 'أعياد ميلاد قادمة',
+    'no_upcoming' => 'لا توجد أعياد ميلاد قادمة خلال :days أيام.',
+    'remaining'   => ':count يوم',
+    'age_years'   => ':age سنة',
+    'days'        => 'يوم',
 ];

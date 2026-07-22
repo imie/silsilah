@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'address'       => 'Address',
-    'location_name' => 'Location Name',
-    'latitude'      => 'Latitude',
-    'longitude'     => 'Longitude',
+    'address'       => 'العنوان',
+    'location_name' => 'اسم الموقع',
+    'latitude'      => 'خطوط العرض',
+    'longitude'     => 'خطوط الطول',
 ];
